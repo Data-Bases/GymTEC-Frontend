@@ -1,36 +1,51 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './styles/App.scss'
 import axios from 'axios'
 import { Route } from 'wouter'
 
+import ObjectList from './components/ObjectList'
+import DropdownButton from './components/DropdownButton'
+import NavigationBar from './components/NavigationBar'
+
+const objetos = [
+  'Botón 1',
+  'Botón 2',
+  'Botón 3',
+  'Botón 4',
+  'Botón 5',
+  'Botón 6',
+  'Botón 7',
+  'Botón 8',
+  'Botón 9',
+  'Botón 10',
+  'Botón 11',
+  'Botón 12',
+];
 
 function App() {
   const [count, setCount] = useState(0)
-  
+
 
   // Plantilla GET
   axios.get('http://url')
-  .then(function (response) {
+    .then(function (response) {
 
-    console.log(response.data);
+      console.log(response.data);
 
-  })
-  .catch(function (error) {
-    if (error.response) { // GET response with a status code not in range 2xx
-      console.log(error.response.data);
-      console.log(error.response.status);
-      console.log(error.response.headers);
-    } else if (error.request) { // no response
-      console.log(error.request);
-      // instance of XMLHttpRequest in the browser
-      // instance ofhttp.ClientRequest in node.js
-    } else { // Something wrong in setting up the request
-      console.log('Error', error.message);
-    }
-    console.log(error.config);
-  });
+    })
+    .catch(function (error) {
+      if (error.response) { // GET response with a status code not in range 2xx
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) { // no response
+        console.log(error.request);
+        // instance of XMLHttpRequest in the browser
+        // instance ofhttp.ClientRequest in node.js
+      } else { // Something wrong in setting up the request
+        console.log('Error', error.message);
+      }
+      console.log(error.config);
+    });
 
   // Plantilla POST
   axios.post(
@@ -98,28 +113,11 @@ function App() {
   });
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="container mt-3">
+      <ObjectList objetos={objetos} />
+      <DropdownButton></DropdownButton>
+      <NavigationBar></NavigationBar>
+    </div>
   )
 }
 
