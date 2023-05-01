@@ -1,40 +1,15 @@
 import { useState } from 'react'
-import axios from 'axios'
-import { Route } from 'wouter'
+import ListRender from './listRender'
+
+import { pathToRegexp } from "path-to-regexp";
+import { Router, Switch, Route, Link, useRoute } from "wouter";
+import makeCachedMatcher from "wouter/matcher";
+
 
 import ObjectList from './components/ObjectList'
 import DropdownButton from './components/DropdownButton'
 import NavigationBar from './components/NavigationBar'
 
-const objetos = [
-  'Botón 1',
-  'Botón 2',
-  'Botón 3',
-  'Botón 4',
-  'Botón 5',
-  'Botón 6',
-  'Botón 7',
-  'Botón 8',
-  'Botón 9',
-  'Botón 10',
-  'Botón 11',
-  'Botón 12',
-];
-
-function App() {
-  const [count, setCount] = useState(0)
-
-
-  
-
-  return (
-    <div className="container mt-3">
-      <ObjectList objetos={objetos} />
-      <DropdownButton></DropdownButton>
-      <NavigationBar></NavigationBar>
-    </div>
-  )
-}
 /*
  * This function specifies how strings like /app/:users/:items* are
  * transformed into regular expressions.
@@ -65,7 +40,7 @@ function App() {
       <div className="App">
           <Switch>
             <Route path="/">Welcome!</Route>
-            <Route path="/gestion/:tramite">Gestion</Route>
+            <Route path="/gestion/:tramite"><ListRender/></Route>
             <Route path="/configuracion/:tramite">Configuracion</Route>
             <Route path="/planilla/">Planilla</Route>
 

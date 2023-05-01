@@ -21,7 +21,7 @@ const objetos = [
   'Botón 12',
 ];
 
-function listRender() {
+function ListRender() {
   const [count, setCount] = useState(0)
 
 
@@ -36,4 +36,4 @@ function listRender() {
   )
 }
 
-export default listRender
+export default ListRender
