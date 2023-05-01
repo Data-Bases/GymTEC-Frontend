@@ -3,64 +3,64 @@ import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const ObjectList = ({ objetos }) => {
-    const [selected, setSelected] = useState(null);
-    const [editing, setEditing] = useState(false);
-    const [editedObjeto, setEditedObjeto] = useState('');
-    const [newObjeto, setNewObjeto] = useState('');
-    const [isNewObjeto, setIsNewObjeto] = useState(true);
 
-    const handleClick = (objeto) => {
+    // Estados
+    const [selected, setSelected] = useState(''); // Nombre del objeto seleccionado
+    const [isEditing, setIsEditing] = useState(false); // Valor booleano para saber si se esta editando un objeto 
+    const [editedObjeto, setEditedObjeto] = useState(''); // Nombre del objeto editado
+    const [newObjeto, setNewObjeto] = useState(''); // Nombre del nuevo objeto
+    const [isAddDisabled, setIsAddDisabled] = useState(true); // Valor booleano para saber si el boton '+' debe estar descativado
+
+    // Funciones
+    const handleClick = (objeto) => { // Controlador al hacer click en un objeto de la lista
         setSelected(objeto);
-        console.log(objeto);
-        console.log(objetos);
+        // console.log(objeto);
+        // console.log(objetos);
     };
 
-    const handleDoubleClick = (objeto) => {
+    const handleDoubleClick = (objeto) => { // Controlador al hacer doble click en un objeto de la lista
+        console.log(objeto)
         setEditedObjeto(objeto);
-        setEditing(true);
+        setIsEditing(true);
     };
 
-    const handleEditInputChange = (event) => {
+    const handleEditInputChange = (event) => { // Controlador para guardar el nuevo nombre del objeto en un estado
         setEditedObjeto(event.target.value);
     };
 
-    const handleEditSubmit = (event) => {
+    const handleEditSubmit = (event) => { // Controlador para guardar el nuevo nombre del objeto
         event.preventDefault();
         const index = objetos.findIndex((objeto) => objeto === selected);
         objetos[index] = editedObjeto;
-        setEditing(false);
-        setEditedObjeto('');
+        setIsEditing(false);
     };
 
-    const handleDelete = (objeto) => {
+    const handleDelete = (objeto) => { // Controlador para eliminar un objeto
         const index = objetos.findIndex((o) => o === objeto);
-        if (index !== -1) {
-            objetos.splice(index, 1);
-            setSelected(null);
-            setEditing(false);
-        }
+        objetos.splice(index, 1);
+        setIsEditing(false);
     };
 
-    const handleNewInputChange = (event) => {
+    const handleNewInputChange = (event) => { // Controlador para guardar el nombre del nuevo objeto en un estado
         setNewObjeto(event.target.value);
         if (event.target.value === '') {
-            setIsNewObjeto(true)
-        } else {
-            setIsNewObjeto(false)
+            setIsAddDisabled(true)
         }
-
+        else {
+            setIsAddDisabled(false)
+        }
     };
 
-    const handleNewSubmit = (event) => {
+    const handleNewSubmit = (event) => { // Controlador para guardar el nuevo objeto
         event.preventDefault();
         objetos.push(newObjeto);
         setNewObjeto('');
-        setIsNewObjeto(true)
+        setIsAddDisabled(true)
     };
 
     const renderObjetos = () => {
         return objetos.map((objeto, i) => {
-            if (editing && selected === objeto) {
+            if (isEditing && (selected === objeto)) { // Renderizar el objeto al que se le hace doble click si se esta editando y hay un objeto seleccionado
                 return (
                     <form onSubmit={handleEditSubmit} key={i}>
                         <input
@@ -69,19 +69,12 @@ const ObjectList = ({ objetos }) => {
                             onChange={handleEditInputChange}
                             className="mb-2 form-control"
                         />
-                        <Button type="submit" variant="success" className="mb-2">
-                            ✓
-                        </Button>
-                        <Button
-                            variant="danger"
-                            className="mb-2 ml-2"
-                            onClick={() => handleDelete(objeto)}
-                        >
-                            ⌫
-                        </Button>
+                        <Button type="submit" variant="success" className="mb-2">✓</Button>
+                        <Button variant="danger" className="mb-2 ml-2" onClick={() => handleDelete(objeto)}>⌫</Button>
                     </form>
                 );
-            } else {
+            }
+            else { // Renderizar el objeto al que se le hace click
                 return (
                     <Button
                         key={i}
@@ -98,6 +91,7 @@ const ObjectList = ({ objetos }) => {
         });
     };
 
+    // Return
     return (
         <div
             className="d-flex flex-column p-3"
@@ -121,9 +115,7 @@ const ObjectList = ({ objetos }) => {
                         placeholder="¿?"
                         display='flex'
                     />
-                    <Button type="submit" variant="dark" className="ml-auto" disabled={isNewObjeto}>
-                        +
-                    </Button>
+                    <Button type="submit" variant="dark" className="ml-auto" disabled={isAddDisabled}>+</Button>
                 </div>
             </form>
         </div>
