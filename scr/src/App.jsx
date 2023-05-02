@@ -12,9 +12,108 @@ import DropdownButton from './components/DropdownButton'
 import NavigationBar from './components/NavigationBar';
 // import NavigationBar from './components/NavigationBar'
 
-const botones1 = ['Botón 1', 'Botón 2', 'Botón 3', 'Botón 4', 'Botón 5', 'Botón 6', 'Botón 7', 'Botón 8', 'Botón 9', 'Botón 10', 'Botón 11', 'Botón 12'];
-const botones2 = ['Botón 13', 'Botón 14', 'Botón 15', 'Botón 16', 'Botón 17', 'Botón 18', 'Botón 19', 'Botón 20', 'Botón 21', 'Botón 22', 'Botón 23', 'Botón 24'];
+const valores1 = [
+  {
+    nombre: 'Tratamiento 1',
+    identificador: 1001
+  },
+  {
+    nombre: 'Tratamiento 2',
+    identificador: 1002
+  },
+  {
+    nombre: 'Tratamiento 3',
+    identificador: 1003
+  },
+  {
+    nombre: 'Tratamiento 4',
+    identificador: 1004
+  },
+  {
+    nombre: 'Tratamiento 5',
+    identificador: 1005
+  },
+  {
+    nombre: 'Tratamiento 6',
+    identificador: 1006
+  },
+  {
+    nombre: 'Tratamiento 7',
+    identificador: 1007
+  },
+  {
+    nombre: 'Tratamiento 8',
+    identificador: 1008
+  },
+  {
+    nombre: 'Tratamiento 9',
+    identificador: 1009
+  },
+  {
+    nombre: 'Tratamiento 10',
+    identificador: 10010
+  },
+  {
+    nombre: 'Tratamiento 11',
+    identificador: 10011
+  },
+  {
+    nombre: 'Tratamiento 12',
+    identificador: 10012
+  },
+];
 
+
+const valores2 = [
+  {
+    nombre: 'Tratamiento 13',
+    identificador: 10013
+  },
+  {
+    nombre: 'Tratamiento 14',
+    identificador: 10014
+  },
+  {
+    nombre: 'Tratamiento 15',
+    identificador: 10015
+  },
+  {
+    nombre: 'Tratamiento 16',
+    identificador: 10016
+  },
+  {
+    nombre: 'Tratamiento 17',
+    identificador: 10017
+  },
+  {
+    nombre: 'Tratamiento 18',
+    identificador: 10018
+  },
+  {
+    nombre: 'Tratamiento 19',
+    identificador: 10019
+  },
+  {
+    nombre: 'Tratamiento 20',
+    identificador: 10020
+  },
+  {
+    nombre: 'Tratamiento 21',
+    identificador: 10021
+  },
+  {
+    nombre: 'Tratamiento 22',
+    identificador: 10022
+  },
+  {
+    nombre: 'Tratamiento 23',
+    identificador: 10023
+  },
+  {
+    nombre: 'Tratamiento 24',
+    identificador: 10024
+  }
+];
 /*
  * This function specifies how strings like /app/:users/:items* are
  * transformed into regular expressions.
@@ -41,53 +140,53 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    // <Router matcher={customMatcher}>
-    //   <div className="App">
-    //       <Switch>
-    //         <Route path="/">Welcome!</Route>
-    //         <Route path="/gestion/:tramite"><ListRender/></Route>
-    //         <Route path="/configuracion/:tramite">Configuracion</Route>
-    //         <Route path="/planilla/">Planilla</Route>
+    <Router matcher={customMatcher}>
+      <div className="App">
+        <Switch>
+          <Route path="/">
+
+            <ObjectList objetos={valores1}></ObjectList>
+            <TwoObjectList objetos1={valores1} objetos2={valores2} ></TwoObjectList>
+
+          </Route>
+          <Route path="/gestion/:tramite"><ListRender /></Route>
+          <Route path="/configuracion/:tramite">Configuracion</Route>
+          <Route path="/planilla/">Planilla</Route>
 
 
-    //         <Route path="/(for-sale|sold-items)/:item">
-    //           {(params) => (
-    //             <article>
-    //               <h1>{params.item.toUpperCase()}: Product Info</h1>
-    //               <p>
-    //                 Injection stdio.h wannabee hexadecimal packet mainframe
-    //                 script kiddies thread new gnu win emacs for fopen if cat
-    //                 Leslie Lamport. Big-endian over clock hello world Starcraft
-    //                 firewall machine code d00dz alloc perl. Flush class deadlock
-    //                 man pages tera unix frack semaphore long server rsa suitably
-    //                 small values.
-    //               </p>
+          <Route path="/(for-sale|sold-items)/:item">
+            {(params) => (
+              <article>
+                <h1>{params.item.toUpperCase()}: Product Info</h1>
+                <p>
+                  Injection stdio.h wannabee hexadecimal packet mainframe
+                  script kiddies thread new gnu win emacs for fopen if cat
+                  Leslie Lamport. Big-endian over clock hello world Starcraft
+                  firewall machine code d00dz alloc perl. Flush class deadlock
+                  man pages tera unix frack semaphore long server rsa suitably
+                  small values.
+                </p>
 
-    //               <p>
-    //                 Mega wabbit firewall frack fork grep gobble false stdio.h
-    //                 mainframe fail endif less Starcraft tera gcc blob back door
-    //                 void float lib ack. Alloc try catch bypass null new access
-    //                 int double wannabee stack mutex fatal dereference nak bit vi
-    //                 crack semaphore. Bin continue gnu bytes case salt packet
-    //                 sniffer char private bin infinite loop foad.
-    //               </p>
-    //             </article>
-    //           )}
-    //         </Route>
-    //         <Route path="/:anything*">
-    //           <center>
-    //             <b>404:</b> Sorry, this page isn't ready yet!
-    //           </center>
-    //         </Route>
-    //       </Switch>
-    //       </div>
-    // </Router>
-    <>
-      <TwoObjectList objetos1={botones1} objetos2={botones2}></TwoObjectList>
-      <ObjectList objetos={botones1}></ObjectList>
-      <NavigationBar></NavigationBar>
-    </>
-  )
+                <p>
+                  Mega wabbit firewall frack fork grep gobble false stdio.h
+                  mainframe fail endif less Starcraft tera gcc blob back door
+                  void float lib ack. Alloc try catch bypass null new access
+                  int double wannabee stack mutex fatal dereference nak bit vi
+                  crack semaphore. Bin continue gnu bytes case salt packet
+                  sniffer char private bin infinite loop foad.
+                </p>
+              </article>
+            )}
+          </Route>
+          <Route path="/:anything*">
+            <center>
+              <b>404:</b> Sorry, this page isn't ready yet!
+            </center>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
 }
 
 export default App

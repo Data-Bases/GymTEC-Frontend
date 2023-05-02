@@ -5,45 +5,60 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function ObjectList({ objetos }) {
 
     // Estados
-    const [selected, setSelected] = useState(''); // Nombre del objeto seleccionado
+    const [selectedID, setSelectedID] = useState(0); // ID del objeto seleccionado
     const [isEditing, setIsEditing] = useState(false); // Valor booleano para saber si se esta editando un objeto 
-    const [editedObjeto, setEditedObjeto] = useState(''); // Nombre del objeto editado
-    const [newObjeto, setNewObjeto] = useState(''); // Nombre del nuevo objeto
+    const [editedName, setEditedName] = useState(''); // Nombre del objeto editado
+    const [newName, setNewName] = useState(''); // Nombre del nuevo objeto
+    const [newID, setNewID] = useState(''); // ID del nuevo objeto
     const [isAddDisabled, setIsAddDisabled] = useState(true); // Valor booleano para saber si el boton '+' debe estar descativado
 
     // Funciones
     const handleClick = (objeto) => { // Controlador al hacer click en un objeto de la lista
-        setSelected(objeto);
-        // console.log(objeto);
-        // console.log(objetos);
+        setSelectedID(objeto.identificador);
+        console.log(objetos);
     };
 
     const handleDoubleClick = (objeto) => { // Controlador al hacer doble click en un objeto de la lista
         // console.log(objeto)
-        setEditedObjeto(objeto);
+        setEditedName(objeto.nombre);
         setIsEditing(true);
     };
 
     const handleEditInputChange = (event) => { // Controlador para guardar el nuevo nombre del objeto en un estado
-        setEditedObjeto(event.target.value);
+        setEditedName(event.target.value);
     };
 
-    const handleEditSubmit = (event) => { // Controlador para guardar el nuevo nombre del objeto
-        event.preventDefault();
-        const index = objetos.findIndex((objeto) => objeto === selected);
-        objetos[index] = editedObjeto;
+    const handleEditSubmit = (objeto) => { // Controlador para guardar el nuevo nombre del objeto
+        console.log(objeto)
+
+        // ---------- SET ----------
+
+        objeto.nombre = editedName; // En vez de esto se puede hacer un GET (mas seguro, menos rapido)
         setIsEditing(false);
     };
 
     const handleDelete = (objeto) => { // Controlador para eliminar un objeto
-        const index = objetos.findIndex((o) => o === objeto);
-        objetos.splice(index, 1);
+        const index = objetos.findIndex((o) => o.identificador === objeto.identificador);
+
+        // ---------- SET ----------
+
+        objetos.splice(index, 1); // En vez de esto se puede hacer un GET (mas seguro, menos rapido)
         setIsEditing(false);
     };
 
-    const handleNewInputChange = (event) => { // Controlador para guardar el nombre del nuevo objeto en un estado
-        setNewObjeto(event.target.value);
-        if (event.target.value === '') {
+    const handleNewName = (event) => { // Controlador para guardar el nombre del nuevo objeto en un estado
+        setNewName(event.target.value);
+        if (event.target.value === '' || newID === '') {
+            setIsAddDisabled(true)
+        }
+        else {
+            setIsAddDisabled(false)
+        }
+    };
+
+    const handleNewID = (event) => { // Controlador para guardar el nombre del nuevo objeto en un estado
+        setNewID(event.target.value);
+        if (event.target.value === '' || newName === '') {
             setIsAddDisabled(true)
         }
         else {
@@ -53,19 +68,27 @@ function ObjectList({ objetos }) {
 
     const handleNewSubmit = (event) => { // Controlador para guardar el nuevo objeto
         event.preventDefault();
-        objetos.push(newObjeto);
-        setNewObjeto('');
+
+        // ---------- PUT ----------
+
+        objetos.push({ // En vez de esto se puede hacer un GET (mas seguro, menos rapido)
+            nombre: newName,
+            identificador: parseInt(newID)
+        });
+
+        setNewName('');
+        setNewID('');
         setIsAddDisabled(true)
     };
 
     const renderObjetos = () => {
         return objetos.map((objeto, i) => {
-            if (isEditing && (selected === objeto)) { // Renderizar el objeto al que se le hace doble click si se esta editando y hay un objeto seleccionado
+            if (isEditing && (selectedID === objeto.identificador)) { // Renderizar el objeto al que se le hace doble click si se esta editando y hay un objeto seleccionado
                 return (
-                    <form onSubmit={handleEditSubmit} key={i}>
+                    <form onSubmit={() => handleEditSubmit(objeto)} key={i}>
                         <input
                             type="text"
-                            value={editedObjeto}
+                            value={editedName}
                             onChange={handleEditInputChange}
                             className="mb-2 form-control"
                         />
@@ -77,14 +100,14 @@ function ObjectList({ objetos }) {
             else { // Renderizar el objeto al que se le hace click
                 return (
                     <Button
-                        key={i}
-                        variant={selected === objeto ? 'primary' : 'light'}
+                        key={objeto.identificador}
+                        variant={selectedID === objeto.identificador ? 'primary' : 'light'}
                         className="mb-2"
                         style={{ width: '100%' }}
                         onClick={() => handleClick(objeto)}
                         onDoubleClick={() => handleDoubleClick(objeto)}
                     >
-                        {objeto}
+                        {objeto.nombre}
                     </Button>
                 );
             }
@@ -109,10 +132,18 @@ function ObjectList({ objetos }) {
                 <div className="d-flex">
                     <input
                         type="text"
-                        value={newObjeto}
-                        onChange={handleNewInputChange}
+                        value={newName}
+                        onChange={handleNewName}
                         className="form-control mr-2 flex-grow-1 mx-2"
-                        placeholder="¿?"
+                        placeholder="Nombre"
+                        display='flex'
+                    />
+                    <input
+                        type="text"
+                        value={newID}
+                        onChange={handleNewID}
+                        className="form-control mr-2 flex-grow-1 mx-2"
+                        placeholder="ID"
                         display='flex'
                     />
                     <Button type="submit" variant="dark" className="ml-auto" disabled={isAddDisabled}>+</Button>
