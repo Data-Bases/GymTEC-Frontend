@@ -7,10 +7,13 @@ import makeCachedMatcher from "wouter/matcher";
 
 
 import ObjectList from './components/ObjectList'
+import TwoObjectList from './components/TwoObjectList'
 import DropdownButton from './components/DropdownButton'
-import NavigationBar from './components/NavigationBar'
+import NavigationBar from './components/NavigationBar';
+// import NavigationBar from './components/NavigationBar'
 
-const botones = ['Botón 1', 'Botón 2', 'Botón 3', 'Botón 4', 'Botón 5', 'Botón 6', 'Botón 7', 'Botón 8', 'Botón 9', 'Botón 10', 'Botón 11', 'Botón 12'];
+const botones1 = ['Botón 1', 'Botón 2', 'Botón 3', 'Botón 4', 'Botón 5', 'Botón 6', 'Botón 7', 'Botón 8', 'Botón 9', 'Botón 10', 'Botón 11', 'Botón 12'];
+const botones2 = ['Botón 13', 'Botón 14', 'Botón 15', 'Botón 16', 'Botón 17', 'Botón 18', 'Botón 19', 'Botón 20', 'Botón 21', 'Botón 22', 'Botón 23', 'Botón 24'];
 
 /*
  * This function specifies how strings like /app/:users/:items* are
@@ -80,8 +83,9 @@ function App() {
     //       </div>
     // </Router>
     <>
-    <ObjectList objetos={botones}></ObjectList>
-    <NavigationBar></NavigationBar>
+      <TwoObjectList objetos1={botones1} objetos2={botones2}></TwoObjectList>
+      <ObjectList objetos={botones1}></ObjectList>
+      <NavigationBar></NavigationBar>
     </>
   )
 }

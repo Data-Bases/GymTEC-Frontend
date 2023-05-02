@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const ObjectList = ({ objetos }) => {
+function ObjectList({ objetos }) {
 
     // Estados
     const [selected, setSelected] = useState(''); // Nombre del objeto seleccionado
@@ -19,7 +19,7 @@ const ObjectList = ({ objetos }) => {
     };
 
     const handleDoubleClick = (objeto) => { // Controlador al hacer doble click en un objeto de la lista
-        console.log(objeto)
+        // console.log(objeto)
         setEditedObjeto(objeto);
         setIsEditing(true);
     };
@@ -120,6 +120,6 @@ const ObjectList = ({ objetos }) => {
             </form>
         </div>
     );
-};
+}
 
 export default ObjectList;
