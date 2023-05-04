@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import ListRender from './listRender'
+import { useState } from "react";
+import ListRender from "./listRender";
 
 import { pathToRegexp } from "path-to-regexp";
 import { Router, Switch, Route, Link, useRoute } from "wouter";
@@ -7,6 +7,7 @@ import makeCachedMatcher from "wouter/matcher";
 
 import AdminActionBoxA from './components/AdminActionBoxA';
 import AdminActionBoxB from './components/AdminActionBoxB';
+import Calendar from "./components/Calendar";
 
 const puestos = [
   {
@@ -93,9 +94,8 @@ const convertPathToRegexp = (path) => {
 // signature of the matcher fn: (pattern, path) => [success, params]
 const customMatcher = makeCachedMatcher(convertPathToRegexp);
 
-
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
 
   return (
     <Router matcher={customMatcher}>
@@ -110,6 +110,21 @@ function App() {
           <Route path="/configuracion/:tramite">Configuracion</Route>
           <Route path="/planilla/">Planilla</Route>
 
+          <Route path="/(for-sale|sold-items)/:item">
+            {(params) => (
+              <article>
+                <h1>{params.item.toUpperCase()}: Product Info</h1>
+                <p>
+                  Injection stdio.h wannabee hexadecimal packet mainframe script
+                  kiddies thread new gnu win emacs for fopen if cat Leslie
+                  Lamport. Big-endian over clock hello world Starcraft firewall
+                  machine code d00dz alloc perl. Flush class deadlock man pages
+                  tera unix frack semaphore long server rsa suitably small
+                  values.
+                </p>
+                </article>
+            )}
+            </Route>
 
           <Route path="/(for-sale|sold-items)/:item">
             {(params) => (
@@ -146,4 +161,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
