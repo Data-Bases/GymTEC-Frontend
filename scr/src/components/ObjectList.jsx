@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function ObjectList({ objetos }) {
+function ObjectList({ objetos, setObjectFunction }) {
 
     // Estados
     const [selectedID, setSelectedID] = useState(0); // ID del objeto seleccionado
@@ -15,6 +15,7 @@ function ObjectList({ objetos }) {
     // Funciones
     const handleClick = (objeto) => { // Controlador al hacer click en un objeto de la lista
         setSelectedID(objeto.identificador);
+        setObjectFunction(objeto);
         console.log(objetos);
     };
 

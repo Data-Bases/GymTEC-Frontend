@@ -5,115 +5,73 @@ import { pathToRegexp } from "path-to-regexp";
 import { Router, Switch, Route, Link, useRoute } from "wouter";
 import makeCachedMatcher from "wouter/matcher";
 
+import AdminActionBoxA from './components/AdminActionBoxA';
+import AdminActionBoxB from './components/AdminActionBoxB';
 
-import ObjectList from './components/ObjectList'
-import TwoObjectList from './components/TwoObjectList'
-import DropdownButton from './components/DropdownButton'
-import NavigationBar from './components/NavigationBar';
-// import NavigationBar from './components/NavigationBar'
-
-const valores1 = [
+const puestos = [
   {
-    nombre: 'Tratamiento 1',
-    identificador: 1001
+    nombre: 'Puesto 1',
+    identificador: 1001,
+    informacion: 'Puesto 1 para hacer muchas cosas'
   },
   {
-    nombre: 'Tratamiento 2',
-    identificador: 1002
+    nombre: 'Puesto 2',
+    identificador: 1002,
+    informacion: 'Puesto 2 para hacer muchas cosas'
   },
   {
-    nombre: 'Tratamiento 3',
-    identificador: 1003
+    nombre: 'Puesto 3',
+    identificador: 1003,
+    informacion: 'Puesto 3 para hacer muchas cosas'
   },
   {
-    nombre: 'Tratamiento 4',
-    identificador: 1004
+    nombre: 'Puesto 4',
+    identificador: 1004,
+    informacion: 'Puesto 4 para hacer muchas cosas'
   },
   {
-    nombre: 'Tratamiento 5',
-    identificador: 1005
+    nombre: 'Puesto 5',
+    identificador: 1005,
+    informacion: 'Puesto 5 para hacer muchas cosas'
   },
   {
-    nombre: 'Tratamiento 6',
-    identificador: 1006
+    nombre: 'Puesto 6',
+    identificador: 1006,
+    informacion: 'Puesto 6 para hacer muchas cosas'
   },
   {
-    nombre: 'Tratamiento 7',
-    identificador: 1007
+    nombre: 'Puesto 7',
+    identificador: 1007,
+    informacion: 'Puesto 7 para hacer muchas cosas'
   },
   {
-    nombre: 'Tratamiento 8',
-    identificador: 1008
+    nombre: 'Puesto 8',
+    identificador: 1008,
+    informacion: 'Puesto 8 para hacer muchas cosas'
   },
   {
-    nombre: 'Tratamiento 9',
-    identificador: 1009
+    nombre: 'Puesto 9',
+    identificador: 1009,
+    informacion: 'Puesto 9 para hacer muchas cosas'
   },
   {
-    nombre: 'Tratamiento 10',
-    identificador: 10010
+    nombre: 'Puesto 10',
+    identificador: 10010,
+    informacion: 'Puesto 10 para hacer muchas cosas'
   },
   {
-    nombre: 'Tratamiento 11',
-    identificador: 10011
+    nombre: 'Puesto 11',
+    identificador: 10011,
+    informacion: 'Puesto 11 para hacer muchas cosas'
   },
   {
-    nombre: 'Tratamiento 12',
-    identificador: 10012
+    nombre: 'Puesto 12',
+    identificador: 10012,
+    informacion: 'Puesto 12 para hacer muchas cosas'
   },
 ];
 
 
-const valores2 = [
-  {
-    nombre: 'Tratamiento 13',
-    identificador: 10013
-  },
-  {
-    nombre: 'Tratamiento 14',
-    identificador: 10014
-  },
-  {
-    nombre: 'Tratamiento 15',
-    identificador: 10015
-  },
-  {
-    nombre: 'Tratamiento 16',
-    identificador: 10016
-  },
-  {
-    nombre: 'Tratamiento 17',
-    identificador: 10017
-  },
-  {
-    nombre: 'Tratamiento 18',
-    identificador: 10018
-  },
-  {
-    nombre: 'Tratamiento 19',
-    identificador: 10019
-  },
-  {
-    nombre: 'Tratamiento 20',
-    identificador: 10020
-  },
-  {
-    nombre: 'Tratamiento 21',
-    identificador: 10021
-  },
-  {
-    nombre: 'Tratamiento 22',
-    identificador: 10022
-  },
-  {
-    nombre: 'Tratamiento 23',
-    identificador: 10023
-  },
-  {
-    nombre: 'Tratamiento 24',
-    identificador: 10024
-  }
-];
 /*
  * This function specifies how strings like /app/:users/:items* are
  * transformed into regular expressions.
@@ -145,8 +103,7 @@ function App() {
         <Switch>
           <Route path="/">
 
-            <ObjectList objetos={valores1}></ObjectList>
-            <TwoObjectList objetos1={valores1} objetos2={valores2} ></TwoObjectList>
+            <AdminActionBoxB objetosBD={puestos}></AdminActionBoxB>
 
           </Route>
           <Route path="/gestion/:tramite"><ListRender /></Route>
