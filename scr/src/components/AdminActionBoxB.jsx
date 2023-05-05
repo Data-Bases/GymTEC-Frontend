@@ -6,11 +6,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function AdminActionBoxB({ objetosBD }) {
     const [selectedObject, setSelectedObject] = useState(null);
     const [editMode, setEditMode] = useState(false);
-    const [editedText, setEditedText] = useState('');
+    const [editedID, setEditedID] = useState('');
+    const [editedDescripcion, setEditedDescripcion] = useState('');
 
     const handleSelectedObject = (objeto) => {
         setSelectedObject(objeto);
-        setEditedText(objeto.informacion);
+        setEditedID(objeto.identificador)
+        setEditedDescripcion(objeto.descripcion)
+
         setEditMode(false);
     };
 
@@ -21,7 +24,8 @@ function AdminActionBoxB({ objetosBD }) {
     const handleSaveClick = () => {
 
         // ---------- SET ---------- (informacion)
-        selectedObject.informacion = editedText; // En vez de esto se puede hacer un GET (mas seguro, menos rapido)
+        selectedObject.identificador = editedID // En vez de esto se puede hacer un GET (mas seguro, menos rapido)
+        selectedObject.descripcion = editedDescripcion
 
         setEditMode(false);
     };
@@ -34,31 +38,25 @@ function AdminActionBoxB({ objetosBD }) {
                 padding: '50px',
                 width: '1000px',
                 borderRadius: '10px',
-                justifyContent: 'space-between'
+                justifyContent: 'center'
             }}
         >
-            <ObjectList objetos={objetosBD} setObjectFunction={handleSelectedObject} />
-            <div className="d-flex " style={{ padding: '0 50px', flexDirection: 'column'}}>
-                <h2>Info:</h2>
+            <div style={{ padding: '0 50px 0 0' }}><ObjectList objetos={objetosBD} setObjectFunction={handleSelectedObject} /></div>
+            <div className="d-flex" style={{ padding: '0 0 0 50px', flexDirection: 'column', width: '400px' }}>
+                <h2>Información:</h2>
                 {selectedObject && (
                     <>
                         {editMode ?
-                            <Form className="d-flex align-items-start mt-3">
-                                <Form.Control
-                                    rows={1}
-                                    cols={20}
-                                    value={editedText}
-                                    onChange={(e) => setEditedText(e.target.value)}
-                                    style={{ width: '300px', maxWidth: '500px' }}
-                                />
-                                <Button variant="success" onClick={handleSaveClick} style={{ height: '40px', width: '40px', margin: '0 10px' }}> ✓ </Button>
-                            </Form>
+                            <div className="d-flex" style={{ justifyContent: 'start', flexDirection: 'column' }}>
+                                <Form.Control placeholder='ID' value={editedID} onChange={(e) => setEditedID(e.target.value)} />
+                                <Form.Control placeholder='Descripción' value={editedDescripcion} onChange={(e) => setEditedDescripcion(e.target.value)} />
+                                <Button variant="success" onClick={handleSaveClick} style={{ width: '100%' }}> ✓ </Button>
+                            </div>
                             :
-                            <div className="d-flex" style={{ justifyContent: 'start' }}>
-                                <p style={{ whiteSpace: "pre-wrap", maxWidth: '300px', overflowWrap: 'break-word' }}>
-                                    {selectedObject.informacion}
-                                </p>
-                                <Button variant="success" onClick={handleEditClick} style={{ height: '40px', width: '40px', margin: '0 10px' }}> ✎ </Button>
+                            <div className="d-flex" style={{ justifyContent: 'start', flexDirection: 'column' }}>
+                                <p style={{ whiteSpace: "pre-wrap", overflowWrap: 'break-word' }}>ID: {selectedObject.identificador}</p>
+                                <p style={{ whiteSpace: "pre-wrap", overflowWrap: 'break-word' }}>Descripción: {selectedObject.descripcion}</p>
+                                <Button variant="success" onClick={handleEditClick} style={{ width: '100%' }}> ✎ </Button>
                             </div>}
                     </>
                 )}

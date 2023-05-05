@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function ObjectList({ objetos, setObjectFunction }) {
 
     // Estados
-    const [selectedID, setSelectedID] = useState(0); // ID del objeto seleccionado
+    const [selectedID, setSelectedID] = useState(''); // ID del objeto seleccionado
     const [isEditing, setIsEditing] = useState(false); // Valor booleano para saber si se esta editando un objeto 
     const [editedName, setEditedName] = useState(''); // Nombre del objeto editado
     const [newName, setNewName] = useState(''); // Nombre del nuevo objeto
@@ -16,11 +16,9 @@ function ObjectList({ objetos, setObjectFunction }) {
     const handleClick = (objeto) => { // Controlador al hacer click en un objeto de la lista
         setSelectedID(objeto.identificador);
         setObjectFunction(objeto);
-        console.log(objetos);
     };
 
     const handleDoubleClick = (objeto) => { // Controlador al hacer doble click en un objeto de la lista
-        // console.log(objeto)
         setEditedName(objeto.nombre);
         setIsEditing(true);
     };
@@ -30,7 +28,6 @@ function ObjectList({ objetos, setObjectFunction }) {
     };
 
     const handleEditSubmit = (objeto) => { // Controlador para guardar el nuevo nombre del objeto
-        console.log(objeto)
 
         // ---------- SET ----------
 
@@ -74,7 +71,7 @@ function ObjectList({ objetos, setObjectFunction }) {
 
         objetos.push({ // En vez de esto se puede hacer un GET (mas seguro, menos rapido)
             nombre: newName,
-            identificador: parseInt(newID)
+            identificador: newID
         });
 
         setNewName('');
