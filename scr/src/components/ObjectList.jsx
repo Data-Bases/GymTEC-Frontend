@@ -90,8 +90,8 @@ function ObjectList({ objetos, setObjectFunction }) {
                             onChange={handleEditInputChange}
                             className="mb-2 form-control"
                         />
-                        <Button type="submit" variant="success" className="mb-2">✓</Button>
-                        <Button variant="danger" className="mb-2 ml-2" onClick={() => handleDelete(objeto)}>⌫</Button>
+                        <Button type="submit" variant="success" className="mb-2"> ✓ </Button>
+                        <Button variant="danger" className="mb-2 ml-2" onClick={() => handleDelete(objeto)}> ⌫ </Button>
                     </form>
                 );
             }
@@ -144,7 +144,7 @@ function ObjectList({ objetos, setObjectFunction }) {
                         placeholder="ID"
                         display='flex'
                     />
-                    <Button type="submit" variant="dark" className="ml-auto" disabled={isAddDisabled}>+</Button>
+                    <Button type="submit" className="ml-auto" disabled={isAddDisabled} style={{background: '#1382C9'}}> + </Button>
                 </div>
             </form>
         </div>

@@ -49,7 +49,7 @@ function AdminActionBoxC({ objetosBD }) {
         <Container
             className="d-flex"
             style={{
-                backgroundColor: 'darkgray',
+                backgroundColor: '#7DB54E',
                 padding: '50px',
                 width: '1000px',
                 borderRadius: '10px',
@@ -70,7 +70,7 @@ function AdminActionBoxC({ objetosBD }) {
                                 <Form.Control placeholder='Tipo de Planilla' value={editedTipoPlanilla} onChange={(e) => setEditedTipoPlanilla(e.target.value)} />
                                 <Form.Control placeholder='Salario' value={editedSalario} onChange={(e) => setEditedSalario(e.target.value)} />
                                 <Form.Control placeholder='Email' value={editedEmail} onChange={(e) => setEditedEmail(e.target.value)} />
-                                <Button variant="success" onClick={handleSaveClick} style={{ width: '100%' }}> ✓ </Button>
+                                <Button onClick={handleSaveClick} style={{ width: '100%', background: '#1382C9'}}> ✓ </Button>
                             </div>
                             :
                             <div className="d-flex" style={{ justifyContent: 'start', flexDirection: 'column' }}>
@@ -81,7 +81,7 @@ function AdminActionBoxC({ objetosBD }) {
                                 <p style={{ whiteSpace: "pre-wrap", overflowWrap: 'break-word' }}>Tipo de Planilla: {selectedObject.tipoPlanilla}</p>
                                 <p style={{ whiteSpace: "pre-wrap", overflowWrap: 'break-word' }}>Salario: {selectedObject.salario}</p>
                                 <p style={{ whiteSpace: "pre-wrap", overflowWrap: 'break-word' }}>Email: {selectedObject.email}</p>
-                                <Button variant="success" onClick={handleEditClick} style={{ width: '100%' }}> ✎ </Button>
+                                <Button onClick={handleEditClick} style={{ width: '100%', background: '#1382C9'}}> ✎ </Button>
                             </div>}
                     </>
                 )}
