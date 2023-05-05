@@ -5,10 +5,13 @@ import { pathToRegexp } from "path-to-regexp";
 import { Router, Switch, Route, Link, useRoute } from "wouter";
 import makeCachedMatcher from "wouter/matcher";
 
+<<<<<<< Updated upstream
 import AdminActionBoxA from './components/AdminActionBoxA';
 import AdminActionBoxB from './components/AdminActionBoxB';
 import AdminActionBoxC from './components/AdminActionBoxC';
 import AdminActionBoxD from './components/AdminActionBoxD';
+=======
+>>>>>>> Stashed changes
 import Calendar from "./components/Calendar";
 
 const puestos = [
@@ -326,7 +329,11 @@ function App() {
         <Switch>
           <Route path="/">
 
+<<<<<<< Updated upstream
             <AdminActionBoxB objetosBD={puestos}></AdminActionBoxB>
+=======
+            <Calendar></Calendar>
+>>>>>>> Stashed changes
 
           </Route>
           <Route path="/gestion/:tramite"><ListRender /></Route>
