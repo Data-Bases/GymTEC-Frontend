@@ -9,9 +9,11 @@ import AdminActionBoxA from './components/AdminActionBoxA';
 import AdminActionBoxB from './components/AdminActionBoxB';
 import AdminActionBoxC from './components/AdminActionBoxC';
 import AdminActionBoxD from './components/AdminActionBoxD';
-import Calendar from "./components/Calendar";
+import Welcome from './components/Welcome'
 
 import { puestos, empleados, inventario } from "./components/testValues";
+import TwoListActionBox from "./components/TwoListActionBox";
+import Login from "./components/Login";
 
 /*
  * This function specifies how strings like /app/:users/:items* are
@@ -41,11 +43,8 @@ function App() {
     <Router matcher={customMatcher}>
       <div className="App">
         <Switch>
-          <Route path="/">
-
-            <Calendar></Calendar>
-
-          </Route>
+          <Route path="/" component={Welcome} />
+          <Route path="/login" component={Login} />
           <Route path="/gestion/:tramite"><ListRender /></Route>
           <Route path="/configuracion/:tramite">Configuracion</Route>
           <Route path="/planilla/">Planilla</Route>

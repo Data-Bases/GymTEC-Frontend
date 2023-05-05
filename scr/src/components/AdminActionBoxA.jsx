@@ -7,7 +7,7 @@ function AdminActionBoxA({ objetosBD }) {
     const [selectedObject, setSelectedObject] = useState(null);
     const [editMode, setEditMode] = useState(false);
     const [editedID, setEditedID] = useState('');
-
+    console.log(objetosBD)
     const handleSelectedObject = (objeto) => {
         setSelectedObject(objeto);
         setEditedID(objeto.identificador)
