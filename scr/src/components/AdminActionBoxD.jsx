@@ -44,7 +44,7 @@ function AdminActionBoxD({ objetosBD }) {
         <Container
             className="d-flex"
             style={{
-                backgroundColor: 'darkgray',
+                backgroundColor: '#7DB54E',
                 padding: '50px',
                 width: '1000px',
                 borderRadius: '10px',
@@ -63,7 +63,7 @@ function AdminActionBoxD({ objetosBD }) {
                                 <Form.Control placeholder='Marca' value={editedMarca} onChange={(e) => setEditedMarca(e.target.value)} />
                                 <Form.Control placeholder='Sucursal' value={editedSucursal} onChange={(e) => setEditedSucursal(e.target.value)} />
                                 <Form.Control placeholder='Costo' value={editedCosto} onChange={(e) => setEditedCosto(e.target.value)} />
-                                <Button variant="success" onClick={handleSaveClick} style={{ width: '100%' }}> ✓ </Button>
+                                <Button onClick={handleSaveClick} style={{ width: '100%', background: '#1382C9'}}> ✓ </Button>
                             </div>
                             :
                             <div className="d-flex" style={{ justifyContent: 'start', flexDirection: 'column' }}>
@@ -72,7 +72,7 @@ function AdminActionBoxD({ objetosBD }) {
                                 <p style={{ whiteSpace: "pre-wrap", overflowWrap: 'break-word' }}>Marca: {selectedObject.marca}</p>
                                 <p style={{ whiteSpace: "pre-wrap", overflowWrap: 'break-word' }}>Sucursal: {selectedObject.sucursal}</p>
                                 <p style={{ whiteSpace: "pre-wrap", overflowWrap: 'break-word' }}>Costo: {selectedObject.costo}</p>
-                                <Button variant="success" onClick={handleEditClick} style={{ width: '100%' }}> ✎ </Button>
+                                <Button onClick={handleEditClick} style={{ width: '100%', background: '#1382C9'}}> ✎ </Button>
                             </div>}
                     </>
                 )}

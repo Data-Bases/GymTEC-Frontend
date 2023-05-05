@@ -34,7 +34,7 @@ function AdminActionBoxB({ objetosBD }) {
         <Container
             className="d-flex"
             style={{
-                backgroundColor: 'darkgray',
+                backgroundColor: '#7DB54E',
                 padding: '50px',
                 width: '1000px',
                 borderRadius: '10px',
@@ -50,13 +50,13 @@ function AdminActionBoxB({ objetosBD }) {
                             <div className="d-flex" style={{ justifyContent: 'start', flexDirection: 'column' }}>
                                 <Form.Control placeholder='ID' value={editedID} onChange={(e) => setEditedID(e.target.value)} />
                                 <Form.Control placeholder='Descripción' value={editedDescripcion} onChange={(e) => setEditedDescripcion(e.target.value)} />
-                                <Button variant="success" onClick={handleSaveClick} style={{ width: '100%' }}> ✓ </Button>
+                                <Button onClick={handleSaveClick} style={{ width: '100%', background: '#1382C9'}}> ✓ </Button>
                             </div>
                             :
                             <div className="d-flex" style={{ justifyContent: 'start', flexDirection: 'column' }}>
                                 <p style={{ whiteSpace: "pre-wrap", overflowWrap: 'break-word' }}>ID: {selectedObject.identificador}</p>
                                 <p style={{ whiteSpace: "pre-wrap", overflowWrap: 'break-word' }}>Descripción: {selectedObject.descripcion}</p>
-                                <Button variant="success" onClick={handleEditClick} style={{ width: '100%' }}> ✎ </Button>
+                                <Button onClick={handleEditClick} style={{ width: '100%', background: '#1382C9'}}> ✎ </Button>
                             </div>}
                     </>
                 )}
