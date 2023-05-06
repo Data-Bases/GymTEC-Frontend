@@ -3,14 +3,14 @@ import ObjectList from './ObjectList';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function AdminActionBoxA({ objetosBD }) {
+function AdminActionBoxA({ objetosBD, tramite }) {
     const [selectedObject, setSelectedObject] = useState(null);
     const [editMode, setEditMode] = useState(false);
     const [editedID, setEditedID] = useState('');
-    console.log(objetosBD)
+    // console.log(objetosBD)
     const handleSelectedObject = (objeto) => {
         setSelectedObject(objeto);
-        setEditedID(objeto.identificador)
+        setEditedID(objeto.id)
 
         setEditMode(false);
     };
@@ -22,7 +22,7 @@ function AdminActionBoxA({ objetosBD }) {
     const handleSaveClick = () => {
 
         // ---------- SET ---------- (informacion)
-        selectedObject.identificador = editedID // En vez de esto se puede hacer un GET (mas seguro, menos rapido)
+        selectedObject.id = editedID // En vez de esto se puede hacer un GET (mas seguro, menos rapido)
 
         setEditMode(false);
     };
@@ -38,7 +38,7 @@ function AdminActionBoxA({ objetosBD }) {
                 justifyContent: 'center'
             }}
         >
-            <div style={{ padding: '0 50px 0 0' }}><ObjectList objetos={objetosBD} setObjectFunction={handleSelectedObject} /></div>
+            <div style={{ padding: '0 50px 0 0' }}><ObjectList objetos={objetosBD} tramite={tramite} setObjectFunction={handleSelectedObject} /></div>
             <div className="d-flex" style={{ padding: '0 0 0 50px', flexDirection: 'column', width: '400px' }}>
                 <h2>Información:</h2>
                 {selectedObject && (
@@ -50,7 +50,7 @@ function AdminActionBoxA({ objetosBD }) {
                             </div>
                             :
                             <div className="d-flex" style={{ justifyContent: 'start', flexDirection: 'column' }}>
-                                <p style={{ whiteSpace: "pre-wrap", overflowWrap: 'break-word' }}>ID: {selectedObject.identificador}</p>
+                                <p style={{ whiteSpace: "pre-wrap", overflowWrap: 'break-word' }}>ID: {selectedObject.id}</p>
                                 <Button onClick={handleEditClick} style={{ width: '100%', background: '#1382C9'}}> ✎ </Button>
                             </div>}
                     </>

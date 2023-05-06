@@ -5,15 +5,16 @@ import { pathToRegexp } from "path-to-regexp";
 import { Router, Switch, Route, Link, useRoute } from "wouter";
 import makeCachedMatcher from "wouter/matcher";
 
-import AdminActionBoxA from './components/AdminActionBoxA';
-import AdminActionBoxB from './components/AdminActionBoxB';
-import AdminActionBoxC from './components/AdminActionBoxC';
-import AdminActionBoxD from './components/AdminActionBoxD';
-import Welcome from './components/Welcome'
+import AdminActionBoxA from "./components/AdminActionBoxA";
+import AdminActionBoxB from "./components/AdminActionBoxB";
+import AdminActionBoxC from "./components/AdminActionBoxC";
+import AdminActionBoxD from "./components/AdminActionBoxD";
+import Welcome from "./components/Welcome";
 
 import { puestos, empleados, inventario } from "./components/testValues";
 import TwoListActionBox from "./components/TwoListActionBox";
 import Login from "./components/Login";
+import Gestion from "./components/Gestion";
 
 /*
  * This function specifies how strings like /app/:users/:items* are
@@ -45,7 +46,9 @@ function App() {
         <Switch>
           <Route path="/" component={Welcome} />
           <Route path="/login" component={Login} />
-          <Route path="/gestion/:tramite"><ListRender /></Route>
+          <Route path="/gestion/:tramite">
+            {(params) => <Gestion tramite={params.tramite} />}
+          </Route>
           <Route path="/configuracion/:tramite">Configuracion</Route>
           <Route path="/planilla/">Planilla</Route>
 
@@ -61,30 +64,30 @@ function App() {
                   tera unix frack semaphore long server rsa suitably small
                   values.
                 </p>
-                </article>
+              </article>
             )}
-            </Route>
+          </Route>
 
           <Route path="/(for-sale|sold-items)/:item">
             {(params) => (
               <article>
                 <h1>{params.item.toUpperCase()}: Product Info</h1>
                 <p>
-                  Injection stdio.h wannabee hexadecimal packet mainframe
-                  script kiddies thread new gnu win emacs for fopen if cat
-                  Leslie Lamport. Big-endian over clock hello world Starcraft
-                  firewall machine code d00dz alloc perl. Flush class deadlock
-                  man pages tera unix frack semaphore long server rsa suitably
-                  small values.
+                  Injection stdio.h wannabee hexadecimal packet mainframe script
+                  kiddies thread new gnu win emacs for fopen if cat Leslie
+                  Lamport. Big-endian over clock hello world Starcraft firewall
+                  machine code d00dz alloc perl. Flush class deadlock man pages
+                  tera unix frack semaphore long server rsa suitably small
+                  values.
                 </p>
 
                 <p>
                   Mega wabbit firewall frack fork grep gobble false stdio.h
                   mainframe fail endif less Starcraft tera gcc blob back door
-                  void float lib ack. Alloc try catch bypass null new access
-                  int double wannabee stack mutex fatal dereference nak bit vi
-                  crack semaphore. Bin continue gnu bytes case salt packet
-                  sniffer char private bin infinite loop foad.
+                  void float lib ack. Alloc try catch bypass null new access int
+                  double wannabee stack mutex fatal dereference nak bit vi crack
+                  semaphore. Bin continue gnu bytes case salt packet sniffer
+                  char private bin infinite loop foad.
                 </p>
               </article>
             )}

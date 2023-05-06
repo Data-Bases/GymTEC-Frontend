@@ -3,8 +3,8 @@ import ObjectList from './ObjectList';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function AdminActionBoxC({ objetosBD, tramite }) {
-    const [selectedObject, setSelectedObject] = useState(null);
+function AdminViewSucursal({ objetosBD }) {
+    const [selectedObject, setSelectedObject] = useState(objetosBD);
     const [editMode, setEditMode] = useState(false);
     const [editedID, setEditedID] = useState('');
     const [editedDireccion, setEditedDireccion] = useState('');
@@ -13,10 +13,10 @@ function AdminActionBoxC({ objetosBD, tramite }) {
     const [editedTipoPlanilla, setEditedTipoPlanilla] = useState('');
     const [editedSalario, setEditedSalario] = useState('');
     const [editedEmail, setEditedEmail] = useState('');
-
+    
     const handleSelectedObject = (objeto) => {
         setSelectedObject(objeto);
-        setEditedID(objeto.id)
+        setEditedID(objeto.identificador)
         setEditedDireccion(objeto.direccion)
         setEditedPuesto(objeto.puesto)
         setEditedSucursal(objeto.sucursal)
@@ -34,7 +34,7 @@ function AdminActionBoxC({ objetosBD, tramite }) {
     const handleSaveClick = () => {
 
         // ---------- SET ---------- (informacion)
-        selectedObject.id = editedID // En vez de esto se puede hacer un GET (mas seguro, menos rapido)
+        selectedObject.identificador = editedID // En vez de esto se puede hacer un GET (mas seguro, menos rapido)
         selectedObject.direccion = editedDireccion
         selectedObject.puesto = editedPuesto
         selectedObject.sucursal = editedSucursal
@@ -56,7 +56,6 @@ function AdminActionBoxC({ objetosBD, tramite }) {
                 justifyContent: 'center'
             }}
         >
-            <div style={{ padding: '0 50px 0 0' }}><ObjectList objetos={objetosBD} setObjectFunction={handleSelectedObject} /></div>
             <div className="d-flex" style={{ padding: '0 0 0 50px', flexDirection: 'column', width: '400px' }}>
                 <h2>Información:</h2>
                 {selectedObject && (
@@ -74,7 +73,7 @@ function AdminActionBoxC({ objetosBD, tramite }) {
                             </div>
                             :
                             <div className="d-flex" style={{ justifyContent: 'start', flexDirection: 'column' }}>
-                                <p style={{ whiteSpace: "pre-wrap", overflowWrap: 'break-word' }}>ID: {selectedObject.id}</p>
+                                <p style={{ whiteSpace: "pre-wrap", overflowWrap: 'break-word' }}>ID: {selectedObject.identificador}</p>
                                 <p style={{ whiteSpace: "pre-wrap", overflowWrap: 'break-word' }}>Direccion: {selectedObject.direccion}</p>
                                 <p style={{ whiteSpace: "pre-wrap", overflowWrap: 'break-word' }}>Puesto: {selectedObject.puesto}</p>
                                 <p style={{ whiteSpace: "pre-wrap", overflowWrap: 'break-word' }}>Sucursal: {selectedObject.sucursal}</p>
@@ -90,4 +89,4 @@ function AdminActionBoxC({ objetosBD, tramite }) {
     );
 }
 
-export default AdminActionBoxC;
+export default AdminViewSucursal;

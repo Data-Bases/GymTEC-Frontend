@@ -1,5 +1,7 @@
+import { baseURL } from "./components/backendConection";
+
 // Plantilla GET
-axios.get('http://url')
+axios.get(baseURL + ``)
 .then(function (response) {
 
   console.log(response.data);
@@ -22,7 +24,7 @@ axios.get('http://url')
 
 // Plantilla POST
 axios.post(
-  'http://url',
+  baseURL + ``,
   {
     //Body
     title: "Title",
@@ -54,7 +56,7 @@ axios.post(
 
 // Plantilla PUT
 axios.put(
-  'http://url',
+  baseURL + ``,
   {
     //Body
     title: "title",
