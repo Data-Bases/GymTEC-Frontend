@@ -9,6 +9,7 @@ import AdminActionBoxA from "./components/AdminActionBoxA";
 import AdminActionBoxB from "./components/AdminActionBoxB";
 import AdminActionBoxC from "./components/AdminActionBoxC";
 import AdminActionBoxD from "./components/AdminActionBoxD";
+import AdminActionBoxE from "./components/AdminActionBoxE";
 import Welcome from "./components/Welcome";
 
 import { puestos, empleados, inventario } from "./components/testValues";
@@ -41,65 +42,68 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <Router matcher={customMatcher}>
-      <div className="App">
-        <Switch>
-          <Route path="/" component={Welcome} />
-          <Route path="/login" component={Login} />
-          <Route path="/gestion/:tramite">
-            {(params) => <Gestion tramite={params.tramite} />}
-          </Route>
-          <Route path="/configuracion/:tramite">Configuracion</Route>
-          <Route path="/planilla/">Planilla</Route>
+    // <Router matcher={customMatcher}>
+    //   <div className="App">
+    //     <Switch>
+    //       <Route path="/" component={Welcome} />
+    //       <Route path="/login" component={Login} />
+    //       <Route path="/gestion/:tramite">
+    //         {(params) => <Gestion tramite={params.tramite} />}
+    //       </Route>
+    //       <Route path="/configuracion/:tramite">Configuracion</Route>
+    //       <Route path="/planilla/">Planilla</Route>
 
-          <Route path="/(for-sale|sold-items)/:item">
-            {(params) => (
-              <article>
-                <h1>{params.item.toUpperCase()}: Product Info</h1>
-                <p>
-                  Injection stdio.h wannabee hexadecimal packet mainframe script
-                  kiddies thread new gnu win emacs for fopen if cat Leslie
-                  Lamport. Big-endian over clock hello world Starcraft firewall
-                  machine code d00dz alloc perl. Flush class deadlock man pages
-                  tera unix frack semaphore long server rsa suitably small
-                  values.
-                </p>
-              </article>
-            )}
-          </Route>
+    //       <Route path="/(for-sale|sold-items)/:item">
+    //         {(params) => (
+    //           <article>
+    //             <h1>{params.item.toUpperCase()}: Product Info</h1>
+    //             <p>
+    //               Injection stdio.h wannabee hexadecimal packet mainframe script
+    //               kiddies thread new gnu win emacs for fopen if cat Leslie
+    //               Lamport. Big-endian over clock hello world Starcraft firewall
+    //               machine code d00dz alloc perl. Flush class deadlock man pages
+    //               tera unix frack semaphore long server rsa suitably small
+    //               values.
+    //             </p>
+    //           </article>
+    //         )}
+    //       </Route>
 
-          <Route path="/(for-sale|sold-items)/:item">
-            {(params) => (
-              <article>
-                <h1>{params.item.toUpperCase()}: Product Info</h1>
-                <p>
-                  Injection stdio.h wannabee hexadecimal packet mainframe script
-                  kiddies thread new gnu win emacs for fopen if cat Leslie
-                  Lamport. Big-endian over clock hello world Starcraft firewall
-                  machine code d00dz alloc perl. Flush class deadlock man pages
-                  tera unix frack semaphore long server rsa suitably small
-                  values.
-                </p>
+    //       <Route path="/(for-sale|sold-items)/:item">
+    //         {(params) => (
+    //           <article>
+    //             <h1>{params.item.toUpperCase()}: Product Info</h1>
+    //             <p>
+    //               Injection stdio.h wannabee hexadecimal packet mainframe script
+    //               kiddies thread new gnu win emacs for fopen if cat Leslie
+    //               Lamport. Big-endian over clock hello world Starcraft firewall
+    //               machine code d00dz alloc perl. Flush class deadlock man pages
+    //               tera unix frack semaphore long server rsa suitably small
+    //               values.
+    //             </p>
 
-                <p>
-                  Mega wabbit firewall frack fork grep gobble false stdio.h
-                  mainframe fail endif less Starcraft tera gcc blob back door
-                  void float lib ack. Alloc try catch bypass null new access int
-                  double wannabee stack mutex fatal dereference nak bit vi crack
-                  semaphore. Bin continue gnu bytes case salt packet sniffer
-                  char private bin infinite loop foad.
-                </p>
-              </article>
-            )}
-          </Route>
-          <Route path="/:anything*">
-            <center>
-              <b>404:</b> Sorry, this page isn't ready yet!
-            </center>
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    //             <p>
+    //               Mega wabbit firewall frack fork grep gobble false stdio.h
+    //               mainframe fail endif less Starcraft tera gcc blob back door
+    //               void float lib ack. Alloc try catch bypass null new access int
+    //               double wannabee stack mutex fatal dereference nak bit vi crack
+    //               semaphore. Bin continue gnu bytes case salt packet sniffer
+    //               char private bin infinite loop foad.
+    //             </p>
+    //           </article>
+    //         )}
+    //       </Route>
+    //       <Route path="/:anything*">
+    //         <center>
+    //           <b>404:</b> Sorry, this page isn't ready yet!
+    //         </center>
+    //       </Route>
+    //     </Switch>
+    //   </div>
+    // </Router>
+    <>
+    <h1>scsdc</h1>
+    </>
   );
 }
 
