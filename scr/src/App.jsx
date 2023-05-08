@@ -9,6 +9,7 @@ import AdminActionBoxA from "./components/AdminActionBoxA";
 import AdminActionBoxB from "./components/AdminActionBoxB";
 import AdminActionBoxC from "./components/AdminActionBoxC";
 import AdminActionBoxD from "./components/AdminActionBoxD";
+import AdminActionBoxE from "./components/AdminActionBoxE";
 import Welcome from "./components/Welcome";
 
 import { puestos, empleados, inventario } from "./components/testValues";
