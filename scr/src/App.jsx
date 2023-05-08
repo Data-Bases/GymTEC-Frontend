@@ -15,6 +15,9 @@ import { puestos, empleados, inventario } from "./components/testValues";
 import TwoListActionBox from "./components/TwoListActionBox";
 import Login from "./components/Login";
 import Gestion from "./components/Gestion";
+import { Container } from "react-bootstrap";
+import NavigationBar from "./components/NavigationBar";
+import Configuracion from "./components/Configuracion";
 
 /*
  * This function specifies how strings like /app/:users/:items* are
@@ -42,14 +45,26 @@ function App() {
 
   return (
     <Router matcher={customMatcher}>
-      <div className="App">
+      <div className="App w-100 h-100">
         <Switch>
           <Route path="/" component={Welcome} />
           <Route path="/login" component={Login} />
           <Route path="/gestion/:tramite">
-            {(params) => <Gestion tramite={params.tramite} />}
+            {(params) => (
+              <>
+                <Gestion tramite={params.tramite} />
+                <NavigationBar />
+              </>
+            )}
           </Route>
-          <Route path="/configuracion/:tramite">Configuracion</Route>
+          <Route path="/configuracion/:tramite">
+          {(params) => (
+              <>
+                <Configuracion tramite={params.tramite} />
+                <NavigationBar />
+              </>
+            )}
+          </Route>
           <Route path="/planilla/">Planilla</Route>
 
           <Route path="/(for-sale|sold-items)/:item">

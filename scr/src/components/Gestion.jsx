@@ -5,8 +5,8 @@ import { baseURL } from "./backendConection";
 import { Link } from "wouter";
 import AdminViewSucursal from "./AdminViewSucursal";
 import AdminActionBoxB from "./AdminActionBoxB";
-
-import { listaTramites } from "./backendConection";
+import '../styles/custom.scss';
+import { listaTramites } from "./backendConection"; 
 
 function Gestion({ tramite }) {
     const [sucursal, setSucursal] = useState("GymASETEC");
@@ -45,6 +45,7 @@ function Gestion({ tramite }) {
                 axios
                     .get(baseURL + `Branch/GetBranch/${sucursal}`)
                     .then(function (response) {
+                        console.log(response.data);
                         setInfoBD(response.data);
                         setReady(listaTramites[0]);
                     })
@@ -272,8 +273,8 @@ function Gestion({ tramite }) {
     };
 
     return (
-        <Container>
-            <div>
+        <div className="d-flex h-100 w-100 gestion">
+            <div className="d-flex h-100 flex-column">
                 <Dropdown>
                     <Dropdown.Toggle variant="success" id="dropdown-basic">
                         {sucursal}
@@ -303,7 +304,7 @@ function Gestion({ tramite }) {
                 </Dropdown>
             </div>
             {handleTramite()}
-        </Container>
+        </div>
     );
 }
 

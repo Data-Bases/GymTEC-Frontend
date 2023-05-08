@@ -1,7 +1,8 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "wouter";
+import '../styles/custom.scss';
 
 function NavigationBar() {
   const handleSelect = (eventKey) => {
@@ -9,11 +10,17 @@ function NavigationBar() {
   };
 
   return (
-    <Navbar bg="light" variant="light" fixed="bottom">
+    <Navbar variant="light" fixed="bottom" className="navbar">
       <Nav className="mx-auto" onSelect={handleSelect}>
-        <Nav.Link eventKey="Gestion">Gestion</Nav.Link>
-        <Nav.Link eventKey="Configuración">Configuración</Nav.Link>
-        <Nav.Link eventKey="Plantilla">Plantilla</Nav.Link>
+        <Link href="/gestion/Información">
+          <Nav.Link eventKey="Gestion">Gestion</Nav.Link>
+        </Link>
+        <Link href="/configuracion/Clases">
+          <Nav.Link eventKey="Configuración">Configuración</Nav.Link>
+        </Link>
+        <Link href="/planilla/">
+          <Nav.Link eventKey="Plantilla">Plantilla</Nav.Link>
+        </Link>
       </Nav>
     </Navbar>
   );

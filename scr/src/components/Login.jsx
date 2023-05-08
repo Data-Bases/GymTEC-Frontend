@@ -4,6 +4,8 @@ import { useState } from "react";
 import { baseURL } from "./backendConection";
 import axios from "axios";
 import { useLocation } from "wouter";
+import "../styles/custom.scss"
+
 
 function Login() {
   const [user, setUser] = useState("");
@@ -21,7 +23,7 @@ function Login() {
         if (response.data.id > 0) {
           //Se almacena el token en el navegador
           localStorage.setItem("userId", response.data.id);
-          navigate("/gestion/información")
+          navigate("/gestion/Información")
         } else {
           alert("Usuario o contraseña incorrectos");
         }
@@ -32,9 +34,11 @@ function Login() {
           console.log("Error", error.response.data);
           console.log(error.response.status);
           console.log(error.response.headers);
+          alert("El servidor no respondió correctamente, codigo de error: " + error.response.status)
         } else if (error.request) {
           // no response
           console.log(error.request);
+          alert("Error al conectar con el Servidor")
           // instance of XMLHttpRequest in the browser
           // instance ofhttp.ClientRequest in node.js
         } else {
@@ -79,12 +83,17 @@ function Login() {
   };
 
   return (
-    <Container className="bg-dark">
-      <form className="text-light">
+    <div className="h-100 w-100 bg-dark d-flex login">
+      <form className="text-light d-flex login-form">
         <input
           type="email"
-          placeholder="User"
+          placeholder="Cédula"
           onChange={(event) => setUser(event.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Contraseña"
+          onChange={(event) => setPassword(event.target.value)}
         />
         <div onChange={(event) => setType(event.target.id)}>
           <input
@@ -101,17 +110,12 @@ function Login() {
           />{" "}
           Soy Empleado
         </div>
-        <input
-          type="password"
-          placeholder="Password"
-          onChange={(event) => setPassword(event.target.value)}
-        />
         <Button variant="primary" onClick={() => sendData()}>
           {" "}
           Ingresar{" "}
         </Button>
       </form>
-    </Container>
+    </div>
   );
 }
 

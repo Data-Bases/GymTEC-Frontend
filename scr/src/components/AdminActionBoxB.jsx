@@ -219,17 +219,8 @@ function AdminActionBoxB({ objetosBD, tramite }) {
     };
 
     return (
-        <Container
-            className="d-flex"
-            style={{
-                backgroundColor: "#7DB54E",
-                padding: "50px",
-                width: "1000px",
-                borderRadius: "10px",
-                justifyContent: "center",
-            }}
-        >
-            <div style={{ padding: "0 50px 0 0" }}>
+        <Container className="d-flex infoGestion">
+            <div>
                 <ObjectList
                     objetos={objetosBD}
                     tramite={tramite}
@@ -239,7 +230,6 @@ function AdminActionBoxB({ objetosBD, tramite }) {
             <div
                 className="d-flex"
                 style={{
-                    padding: "0 0 0 50px",
                     flexDirection: "column",
                     width: "400px",
                 }}

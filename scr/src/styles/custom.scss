@@ -1,3 +1,5 @@
+@import "../node_modules/bootstrap/scss/bootstrap";
+
 a.active {
     color: rgb(80, 244, 244);
 }
@@ -13,4 +15,139 @@ div.task-color {
 
 .task {
     overflow: hidden;
+}
+
+// For welcome page
+.welcome {
+    background-image: url("../assets/fondo.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: multiply;
+    background-color: rgb(58, 63, 113);
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+img.logo {
+    width: 50%;
+    margin-right: 25%;
+    margin-left: 25%;
+}
+
+.Button {
+    padding: 20px;
+}
+
+.btnWel {
+    border-radius: 0;
+    color: white;
+    font-size: larger;
+    border: 3px solid white;
+}
+
+.btnWel:hover {
+    color: rgb(34, 198, 121);
+}
+
+// For Login page
+.login {
+    justify-content: center;
+    align-items: center;
+    background: #2d6513;
+    background: -moz-linear-gradient(
+        top,
+        $green-800 0%,
+        $green-800 20%,
+        $cyan-800 100%
+    );
+    background: -webkit-linear-gradient(
+        top,
+        $green-800 0%,
+        $green-800 20%,
+        $cyan-800 100%
+    );
+    background: linear-gradient(
+        to bottom,
+        $green-800 0%,
+        $green-800 20%,
+        $cyan-800 100%
+    );
+}
+
+.login-form {
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 75%;
+}
+
+.login-form input {
+    border-radius: 10px;
+    padding: 5px;
+    border: 0;
+}
+
+.login-form input[type="radio"] {
+    margin-left: 15px;
+}
+
+// Gestión
+
+.gestion {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background: #1c6ea4;
+    background: -moz-linear-gradient(
+        left,
+        $blue-900 0%,
+        $blue-500 25%,
+        $teal-800 100%
+    );
+    background: -webkit-linear-gradient(
+        left,
+        $blue-900 0%,
+        $blue-500 25%,
+        $teal-800 100%
+    );
+    background: linear-gradient(
+        to right,
+        $blue-900 5%,
+        $green-600 40%,
+        $teal-600 100%
+    );
+}
+
+.gestion div {
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.gestion button {
+    padding: 10px;
+}
+
+.infoGestion {
+    background-color: #0dcaf02f;
+    background-blend-mode: multiply;
+    color: $gray-200;
+    padding: 50px;
+    width: 75%;
+    border-radius: 10px;
+    justify-content: space-around;
+    margin: 0;
+    text-shadow: 1px 2px 4px $black;
+}
+
+
+// NavBar
+.navbar {
+    background-color: $gray-200;
+    text-shadow: 1px 2px 4px $teal-600;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: $green-900;
+    text-shadow: 1px 2px 4px $blue-600;
 }

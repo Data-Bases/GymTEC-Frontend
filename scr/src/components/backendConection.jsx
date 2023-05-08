@@ -12,3 +12,10 @@ export const listaTramites = [
     "Productos",
     "Crear Sucursal",
 ];
+
+export const listaConfigs = [
+    "Clases",
+    "Tratamientos Spa",
+    "Productos",
+    "Equipos"
+]
