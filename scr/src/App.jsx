@@ -21,6 +21,7 @@ import NavigationBar from "./components/NavigationBar";
 import Configuracion from "./components/Configuracion";
 import SignUp from "./components/SignUp";
 import Planilla from "./components/Planilla";
+import Cliente from "./components/Cliente";
 
 /*
  * This function specifies how strings like /app/:users/:items* are
@@ -74,7 +75,10 @@ function App() {
                 <Cliente tramite={params.tramite} />
             )}
           </Route>
-          <Route path="/planilla/" component={Planilla}></Route>
+          <Route path="/planilla/">
+            <Planilla />
+            <NavigationBar />
+          </Route>
           <Route path="/:anything*">
             <center>
               <b>404:</b> Sorry, this page isn't ready yet!

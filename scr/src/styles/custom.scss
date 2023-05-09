@@ -12,9 +12,14 @@ div.task-color {
     width: 10px;
     transform: translate(-20px, -100px);
 }
-
+.calendar {
+    width: 50%;
+    overflow: auto;
+}
 .task {
     overflow: hidden;
+    width: 250px;
+    height: 200px;
 }
 
 // For welcome page

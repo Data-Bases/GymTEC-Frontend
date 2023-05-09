@@ -123,6 +123,35 @@ function AdminActionBoxB({ objetosBD, tramite }) {
                         console.log(error.config);
                     });
                 break;
+            case "Planilla":
+                axios
+                    .get(
+                        baseURL +
+                            `Payroll/GetPayrollDescriptionByName/${decodeURI(objeto.name)}`
+                    )
+                    .then(function (response) {
+                        objeto.descripcion = response.data;
+                        setSelectedObject(objeto);
+                        setEditedDescripcion(response.data);
+                    })
+                    .catch(function (error) {
+                        if (error.response) {
+                            // GET response with a status code not in range 2xx
+                            console.log(error.response.data);
+                            console.log(error.response.status);
+                            console.log(error.response.headers);
+                        } else if (error.request) {
+                            // no response
+                            console.log(error.request);
+                            // instance of XMLHttpRequest in the browser
+                            // instance ofhttp.ClientRequest in node.js
+                        } else {
+                            // Something wrong in setting up the request
+                            console.log("Error", error.message);
+                        }
+                        console.log(error.config);
+                    });
+                break;
         }
 
         setEditMode(false);

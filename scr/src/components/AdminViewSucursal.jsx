@@ -11,6 +11,7 @@ function AdminViewSucursal({ objetosBD, sucursal }) {
     const [admin, setAdmin] = useState("");
 
     useEffect(() => {
+        setSelectedObject(objetosBD)
         axios
             .get(baseURL + `Employee/GetEmployeeById/${selectedObject.idEmployeeAdmin}`)
             .then(function (response) {

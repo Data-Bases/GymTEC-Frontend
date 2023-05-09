@@ -10,6 +10,7 @@ import AdminActionBoxD from "./AdminActionBoxD";
 import AdminActionBoxE from "./AdminActionBoxE";
 import "../styles/custom.scss";
 import { listaTramites } from "./backendConection";
+import CrearSucursalBox from "./CrearSucursalBox";
 
 function Gestion({ tramite }) {
     const [sucursal, setSucursal] = useState("GymASETEC");
@@ -40,7 +41,7 @@ function Gestion({ tramite }) {
                 }
                 console.log(error.config);
             });
-    }, []);
+    }, [sucursal]);
 
     useEffect(() => {
         switch (tramite) {
@@ -58,6 +59,8 @@ function Gestion({ tramite }) {
                             console.log(error.response.data);
                             console.log(error.response.status);
                             console.log(error.response.headers);
+                            setInfoBD([]);
+                            setReady(listaTramites[0]);
                         } else if (error.request) {
                             // no response
                             console.log(error.request);
@@ -83,6 +86,8 @@ function Gestion({ tramite }) {
                             console.log(error.response.data);
                             console.log(error.response.status);
                             console.log(error.response.headers);
+                            setInfoBD([]);
+                            setReady(listaTramites[1]);
                         } else if (error.request) {
                             // no response
                             console.log(error.request);
@@ -108,6 +113,8 @@ function Gestion({ tramite }) {
                             console.log(error.response.data);
                             console.log(error.response.status);
                             console.log(error.response.headers);
+                            setInfoBD([]);
+                            setReady(listaTramites[2]);
                         } else if (error.request) {
                             // no response
                             console.log(error.request);
@@ -141,6 +148,8 @@ function Gestion({ tramite }) {
                             console.log(error.response.data);
                             console.log(error.response.status);
                             console.log(error.response.headers);
+                            setInfoBD([]);
+                            setReady(listaTramites[2]);
                         } else if (error.request) {
                             // no response
                             console.log(error.request);
@@ -166,6 +175,8 @@ function Gestion({ tramite }) {
                             console.log(error.response.data);
                             console.log(error.response.status);
                             console.log(error.response.headers);
+                            setInfoBD([]);
+                            setReady(listaTramites[4]);
                         } else if (error.request) {
                             // no response
                             console.log(error.request);
@@ -191,6 +202,8 @@ function Gestion({ tramite }) {
                             console.log(error.response.data);
                             console.log(error.response.status);
                             console.log(error.response.headers);
+                            setInfoBD([]);
+                            setReady(listaTramites[5]);
                         } else if (error.request) {
                             // no response
                             console.log(error.request);
@@ -227,6 +240,8 @@ function Gestion({ tramite }) {
                             console.log(error.response.data);
                             console.log(error.response.status);
                             console.log(error.response.headers);
+                            setInfoBD([]);
+                            setReady(listaTramites[6]);
                         } else if (error.request) {
                             // no response
                             console.log(error.request);
@@ -257,6 +272,36 @@ function Gestion({ tramite }) {
                             console.log(error.response.data);
                             console.log(error.response.status);
                             console.log(error.response.headers);
+                            setInfoBD([]);
+                            setReady(listaTramites[7]);
+                        } else if (error.request) {
+                            // no response
+                            console.log(error.request);
+                            // instance of XMLHttpRequest in the browser
+                            // instance ofhttp.ClientRequest in node.js
+                        } else {
+                            // Something wrong in setting up the request
+                            console.log("Error", error.message);
+                        }
+                        console.log(error.config);
+                    });
+
+                break;
+                case listaTramites[8]:
+                axios
+                    .get(baseURL + `Branch/GetBranch/${sucursal}`)
+                    .then(function (response) {
+                        setInfoBD(response.data);
+                        setReady(listaTramites[8]);
+                    })
+                    .catch(function (error) {
+                        if (error.response) {
+                            // GET response with a status code not in range 2xx
+                            console.log(error.response.data);
+                            console.log(error.response.status);
+                            console.log(error.response.headers);
+                            setInfoBD([]);
+                            setReady(listaTramites[8]);
                         } else if (error.request) {
                             // no response
                             console.log(error.request);
@@ -277,7 +322,12 @@ function Gestion({ tramite }) {
         switch (tramite) {
             case listaTramites[0]:
                 if (ready == listaTramites[0]) {
-                    return <AdminViewSucursal objetosBD={infoBD} sucursal={sucursal} />;
+                    return (
+                        <AdminViewSucursal
+                            objetosBD={infoBD}
+                            sucursal={sucursal}
+                        />
+                    );
                 }
                 break;
             case listaTramites[1]:
@@ -326,6 +376,11 @@ function Gestion({ tramite }) {
             case listaTramites[7]:
                 if (ready == listaTramites[7]) {
                     return <AdminActionBoxE objetosBD={infoBD} />;
+                }
+                break;
+            case listaTramites[8]:
+                if (ready == listaTramites[8]) {
+                    return <CrearSucursalBox objetosBD={infoBD} sucursal={sucursal} />;
                 }
                 break;
         }

@@ -10,7 +10,7 @@ export const listaTramites = [
     "Tipo Equipo",
     "Inventario",
     "Productos",
-    "Crear Sucursal",
+    "Clonar Sucursal",
 ];
 
 export const listaConfigs = [
