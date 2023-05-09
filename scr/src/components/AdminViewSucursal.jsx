@@ -1,48 +1,68 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ObjectList from "./ObjectList";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
+import { baseURL } from "./backendConection";
 
-function AdminViewSucursal({ objetosBD }) {
+function AdminViewSucursal({ objetosBD, sucursal }) {
     const [selectedObject, setSelectedObject] = useState(objetosBD);
     const [editMode, setEditMode] = useState(false);
-    const [editedID, setEditedID] = useState("");
-    const [editedDireccion, setEditedDireccion] = useState("");
-    const [editedPuesto, setEditedPuesto] = useState("");
-    const [editedSucursal, setEditedSucursal] = useState("");
-    const [editedTipoPlanilla, setEditedTipoPlanilla] = useState("");
-    const [editedSalario, setEditedSalario] = useState("");
-    const [editedEmail, setEditedEmail] = useState("");
+    const [admin, setAdmin] = useState("");
 
-    const handleSelectedObject = (objeto) => {
-        setSelectedObject(objeto);
-        setEditedID(objeto.identificador);
-        setEditedDireccion(objeto.direccion);
-        setEditedPuesto(objeto.puesto);
-        setEditedSucursal(objeto.sucursal);
-        setEditedTipoPlanilla(objeto.tipoPlanilla);
-        setEditedSalario(objeto.salario);
-        setEditedEmail(objeto.email);
+    useEffect(() => {
+        axios
+            .get(baseURL + `Employee/GetEmployeeById/${selectedObject.idEmployeeAdmin}`)
+            .then(function (response) {
+                setAdmin(response.data.name + " " + response.data.lastName1 + " " + response.data.lastName2);
+            })
+            .catch(function (error) {
+                if (error.response) {
+                    // GET response with a status code not in range 2xx
+                    console.log(error.response.data);
+                    console.log(error.response.status);
+                    console.log(error.response.headers);
+                } else if (error.request) {
+                    // no response
+                    console.log(error.request);
+                    // instance of XMLHttpRequest in the browser
+                    // instance ofhttp.ClientRequest in node.js
+                } else {
+                    // Something wrong in setting up the request
+                    console.log("Error", error.message);
+                }
+                console.log(error.config);
+            });
+    }, [objetosBD, sucursal]);
+    // const handleSelectedObject = (objeto) => {
+    //     setSelectedObject(objeto);
+    //     setEditedID(objeto.identificador);
+    //     setEditedDireccion(objeto.direccion);
+    //     setEditedPuesto(objeto.puesto);
+    //     setEditedSucursal(objeto.sucursal);
+    //     setEditedTipoPlanilla(objeto.tipoPlanilla);
+    //     setEditedSalario(objeto.salario);
+    //     setEditedEmail(objeto.email);
 
-        setEditMode(false);
-    };
+    //     setEditMode(false);
+    // };
 
-    const handleEditClick = () => {
-        setEditMode(true);
-    };
+    // const handleEditClick = () => {
+    //     setEditMode(true);
+    // };
 
-    const handleSaveClick = () => {
-        // ---------- SET ---------- (informacion)
-        selectedObject.identificador = editedID; // En vez de esto se puede hacer un GET (mas seguro, menos rapido)
-        selectedObject.direccion = editedDireccion;
-        selectedObject.puesto = editedPuesto;
-        selectedObject.sucursal = editedSucursal;
-        selectedObject.tipoPlanilla = editedTipoPlanilla;
-        selectedObject.salario = editedSalario;
-        selectedObject.email = editedEmail;
+    // const handleSaveClick = () => {
+    //     // ---------- SET ---------- (informacion)
+    //     selectedObject.identificador = editedID; // En vez de esto se puede hacer un GET (mas seguro, menos rapido)
+    //     selectedObject.direccion = editedDireccion;
+    //     selectedObject.puesto = editedPuesto;
+    //     selectedObject.sucursal = editedSucursal;
+    //     selectedObject.tipoPlanilla = editedTipoPlanilla;
+    //     selectedObject.salario = editedSalario;
+    //     selectedObject.email = editedEmail;
 
-        setEditMode(false);
-    };
+    //     setEditMode(false);
+    // };
 
     return (
         <Container className="d-flex infoGestion">
@@ -135,7 +155,7 @@ function AdminViewSucursal({ objetosBD }) {
                                         overflowWrap: "break-word",
                                     }}
                                 >
-                                    ID: {selectedObject.identificador}
+                                    Nombre: {selectedObject.name}
                                 </p>
                                 <p
                                     style={{
@@ -143,7 +163,8 @@ function AdminViewSucursal({ objetosBD }) {
                                         overflowWrap: "break-word",
                                     }}
                                 >
-                                    Direccion: {selectedObject.direccion}
+                                    Direccion:{" "}
+                                    {`${selectedObject.province}, ${selectedObject.canton}, ${selectedObject.district}, ${selectedObject.directions}`}
                                 </p>
                                 <p
                                     style={{
@@ -151,7 +172,8 @@ function AdminViewSucursal({ objetosBD }) {
                                         overflowWrap: "break-word",
                                     }}
                                 >
-                                    Puesto: {selectedObject.puesto}
+                                    Capacidad Máxima:{" "}
+                                    {selectedObject.maxCapacity}
                                 </p>
                                 <p
                                     style={{
@@ -159,7 +181,8 @@ function AdminViewSucursal({ objetosBD }) {
                                         overflowWrap: "break-word",
                                     }}
                                 >
-                                    Sucursal: {selectedObject.sucursal}
+                                    Tienda Abierta:{" "}
+                                    {selectedObject.openStore ? "Sí" : "No"}
                                 </p>
                                 <p
                                     style={{
@@ -167,8 +190,8 @@ function AdminViewSucursal({ objetosBD }) {
                                         overflowWrap: "break-word",
                                     }}
                                 >
-                                    Tipo de Planilla:{" "}
-                                    {selectedObject.tipoPlanilla}
+                                    Spa Abierto:{" "}
+                                    {selectedObject.openSpa ? "Sí" : "No"}
                                 </p>
                                 <p
                                     style={{
@@ -176,7 +199,7 @@ function AdminViewSucursal({ objetosBD }) {
                                         overflowWrap: "break-word",
                                     }}
                                 >
-                                    Salario: {selectedObject.salario}
+                                    Administrador: {admin}
                                 </p>
                                 <p
                                     style={{
@@ -184,9 +207,9 @@ function AdminViewSucursal({ objetosBD }) {
                                         overflowWrap: "break-word",
                                     }}
                                 >
-                                    Email: {selectedObject.email}
+                                    Horario: {selectedObject.schedule}
                                 </p>
-                                <Button
+                                {/* <Button
                                     onClick={handleEditClick}
                                     style={{
                                         width: "100%",
@@ -195,7 +218,7 @@ function AdminViewSucursal({ objetosBD }) {
                                 >
                                     {" "}
                                     ✎{" "}
-                                </Button>
+                                </Button> */}
                             </div>
                         )}
                     </>

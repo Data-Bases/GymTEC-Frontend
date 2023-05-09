@@ -19,6 +19,7 @@ import Gestion from "./components/Gestion";
 import { Container } from "react-bootstrap";
 import NavigationBar from "./components/NavigationBar";
 import Configuracion from "./components/Configuracion";
+import SignUp from "./components/SignUp";
 
 /*
  * This function specifies how strings like /app/:users/:items* are
@@ -50,6 +51,7 @@ function App() {
         <Switch>
           <Route path="/" component={Welcome} />
           <Route path="/login" component={Login} />
+          <Route path="/signup" component={SignUp} />
           <Route path="/gestion/:tramite">
             {(params) => (
               <>
@@ -64,6 +66,11 @@ function App() {
                 <Configuracion tramite={params.tramite} />
                 <NavigationBar />
               </>
+            )}
+          </Route>
+          <Route path="/cliente/:id">
+            {(params) => (
+                <Cliente tramite={params.tramite} />
             )}
           </Route>
           <Route path="/planilla/">Planilla</Route>

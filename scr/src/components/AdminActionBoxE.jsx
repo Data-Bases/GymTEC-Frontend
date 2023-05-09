@@ -14,120 +14,34 @@ function AdminActionBoxE({ objetosBD, tramite }) {
     const [editedDescripcion, setEditedDescripcion] = useState("");
 
     const handleSelectedObject = (objeto) => {
-        setSelectedObject(objeto);
-        setEditedID(objeto.id);
-
-        switch (tramite) {
-            case listaTramites[1]:
-                axios
-                    .get(baseURL + `Spa/GetSpaDescriptionByName/${objeto.name}`)
-                    .then(function (response) {
-                        objeto.costo = response.cost;
-                        objeto.descripcion = response.data;
-                        setSelectedObject(objeto);
-                        setEditedCosto(response.cost)
-                        setEditedDescripcion(response.data);
-                    })
-                    .catch(function (error) {
-                        if (error.response) {
-                            // GET response with a status code not in range 2xx
-                            console.log(error.response.data);
-                            console.log(error.response.status);
-                            console.log(error.response.headers);
-                        } else if (error.request) {
-                            // no response
-                            console.log(error.request);
-                            // instance of XMLHttpRequest in the browser
-                            // instance ofhttp.ClientRequest in node.js
-                        } else {
-                            // Something wrong in setting up the request
-                            console.log("Error", error.message);
-                        }
-                        console.log(error.config);
-                    });
-                break;
-            case listaTramites[2]:
-                axios
-                    .get(baseURL + `Job/GetJobDescriptionByName/${objeto.name}`)
-                    .then(function (response) {
-                        objeto.descripcion = response.data;
-                        setSelectedObject(objeto);
-                        setEditedDescripcion(response.data);
-                    })
-                    .catch(function (error) {
-                        if (error.response) {
-                            // GET response with a status code not in range 2xx
-                            console.log(error.response.data);
-                            console.log(error.response.status);
-                            console.log(error.response.headers);
-                        } else if (error.request) {
-                            // no response
-                            console.log(error.request);
-                            // instance of XMLHttpRequest in the browser
-                            // instance ofhttp.ClientRequest in node.js
-                        } else {
-                            // Something wrong in setting up the request
-                            console.log("Error", error.message);
-                        }
-                        console.log(error.config);
-                    });
-                break;
-            case listaTramites[4]:
-                axios
-                    .get(baseURL + `Services/GetServiceByName/${objeto.name}`)
-                    .then(function (response) {
-                        objeto.descripcion = response.data.description;
-                        setSelectedObject(objeto);
-                        setEditedDescripcion(response.data.description);
-                    })
-                    .catch(function (error) {
-                        if (error.response) {
-                            // GET response with a status code not in range 2xx
-                            console.log(error.response.data);
-                            console.log(error.response.status);
-                            console.log(error.response.headers);
-                        } else if (error.request) {
-                            // no response
-                            console.log(error.request);
-                            // instance of XMLHttpRequest in the browser
-                            // instance ofhttp.ClientRequest in node.js
-                        } else {
-                            // Something wrong in setting up the request
-                            console.log("Error", error.message);
-                        }
-                        console.log(error.config);
-                    });
-                break;
-            case listaTramites[5]:
-                axios
-                    .get(
-                        baseURL +
-                        `Equipment/GetEquipmentDescriptionByName/${objeto.name}`
-                    )
-                    .then(function (response) {
-                        objeto.descripcion = response.data;
-                        setSelectedObject(objeto);
-                        setEditedDescripcion(response.data);
-                    })
-                    .catch(function (error) {
-                        if (error.response) {
-                            // GET response with a status code not in range 2xx
-                            console.log(error.response.data);
-                            console.log(error.response.status);
-                            console.log(error.response.headers);
-                        } else if (error.request) {
-                            // no response
-                            console.log(error.request);
-                            // instance of XMLHttpRequest in the browser
-                            // instance ofhttp.ClientRequest in node.js
-                        } else {
-                            // Something wrong in setting up the request
-                            console.log("Error", error.message);
-                        }
-                        console.log(error.config);
-                    });
-                break;
-        }
+        axios
+            .get(baseURL + `Product/GetProductByBarcode/${objeto.id}`)
+            .then(function (response) {
+                objeto.costo = response.data.cost;
+                objeto.descripcion = response.data.description;
+                
+                setSelectedObject(objeto);
+                setEditedID(objeto.id);
+                setEditedCosto(objeto.costo);
+                setEditedDescripcion(objeto.descripcion);
+            })
+            .catch(function (error) {
+                if (error.response) {
+                    // GET response with a status code not in range 2xx
+                    console.log(error.response.data);
+                    console.log(error.response.status);
+                    console.log(error.response.headers);
+                } else if (error.request) {
+                    // no response
+                    console.log(error.request);
+                    // instance of XMLHttpRequest in the browser
+                    // instance ofhttp.ClientRequest in node.js
+                } else {
+                    // Something wrong in setting up the request
+                    console.log("Error", error.message);
+                }
+                console.log(error.config);
+            });
 
         setEditMode(false);
     };
@@ -136,7 +50,8 @@ function AdminActionBoxE({ objetosBD, tramite }) {
         setEditMode(true);
     };
 
-    const handleSaveClick = () => { // Hace falta adaptarlo
+    const handleSaveClick = () => {
+        // Hace falta adaptarlo
         // ---------- SET ---------- (informacion)
         // selectedObject.id = editedID; // En vez de esto se puede hacer un GET (mas seguro, menos rapido)
         selectedObject.descripcion = editedDescripcion;
@@ -146,9 +61,9 @@ function AdminActionBoxE({ objetosBD, tramite }) {
                 axios
                     .put(
                         baseURL +
-                        `Spa/UpdateDescriptionSpaTreatment?name=${selectedObject.name}&newDescription=${editedDescripcion}`
+                            `Spa/UpdateDescriptionSpaTreatment?name=${selectedObject.name}&newDescription=${editedDescripcion}`
                     )
-                    .then(function (response) { })
+                    .then(function (response) {})
                     .catch(function (error) {
                         if (error.response) {
                             // GET response with a status code not in range 2xx
@@ -171,9 +86,9 @@ function AdminActionBoxE({ objetosBD, tramite }) {
                 axios
                     .put(
                         baseURL +
-                        `Job/UpdateDescriptionJob?name=${selectedObject.name}&newDescription=${editedDescripcion}`
+                            `Job/UpdateDescriptionJob?name=${selectedObject.name}&newDescription=${editedDescripcion}`
                     )
-                    .then(function (response) { })
+                    .then(function (response) {})
                     .catch(function (error) {
                         if (error.response) {
                             // GET response with a status code not in range 2xx
@@ -196,9 +111,9 @@ function AdminActionBoxE({ objetosBD, tramite }) {
                 axios
                     .put(
                         baseURL +
-                        `Services/UpdateDescriptionService?name=${selectedObject.name}&newDescription=${editedDescripcion}`
+                            `Services/UpdateDescriptionService?name=${selectedObject.name}&newDescription=${editedDescripcion}`
                     )
-                    .then(function (response) { })
+                    .then(function (response) {})
                     .catch(function (error) {
                         if (error.response) {
                             // GET response with a status code not in range 2xx
@@ -223,17 +138,8 @@ function AdminActionBoxE({ objetosBD, tramite }) {
     };
 
     return (
-        <Container
-            className="d-flex"
-            style={{
-                backgroundColor: "#7DB54E",
-                padding: "50px",
-                width: "1000px",
-                borderRadius: "10px",
-                justifyContent: "center",
-            }}
-        >
-            <div style={{ padding: "0 50px 0 0" }}>
+        <Container className="d-flex infoGestion">
+            <div>
                 <ObjectList
                     objetos={objetosBD}
                     tramite={tramite}
@@ -243,7 +149,6 @@ function AdminActionBoxE({ objetosBD, tramite }) {
             <div
                 className="d-flex"
                 style={{
-                    padding: "0 0 0 50px",
                     flexDirection: "column",
                     width: "400px",
                 }}

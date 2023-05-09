@@ -5,8 +5,11 @@ import { baseURL } from "./backendConection";
 import { Link } from "wouter";
 import AdminViewSucursal from "./AdminViewSucursal";
 import AdminActionBoxB from "./AdminActionBoxB";
-import '../styles/custom.scss';
-import { listaTramites } from "./backendConection"; 
+import AdminActionBoxC from "./AdminActionBoxC";
+import AdminActionBoxD from "./AdminActionBoxD";
+import AdminActionBoxE from "./AdminActionBoxE";
+import "../styles/custom.scss";
+import { listaTramites } from "./backendConection";
 
 function Gestion({ tramite }) {
     const [sucursal, setSucursal] = useState("GymASETEC");
@@ -45,7 +48,7 @@ function Gestion({ tramite }) {
                 axios
                     .get(baseURL + `Branch/GetBranch/${sucursal}`)
                     .then(function (response) {
-                        console.log(response.data);
+                        // console.log(response.data);
                         setInfoBD(response.data);
                         setReady(listaTramites[0]);
                     })
@@ -119,8 +122,16 @@ function Gestion({ tramite }) {
                 break;
             case listaTramites[3]:
                 axios
-                    .get(baseURL + `Employee/GetBranchEmployee/${sucursal}`)
+                    .get(
+                        baseURL +
+                            `Employee/GetEmployeesSalaryByBranch/${sucursal}`
+                    )
                     .then(function (response) {
+                        console.log(response.data);
+                        response.data.map((obj) => {
+                            obj.id = obj.employeeId;
+                            obj.name = obj.fullName;
+                        });
                         setInfoBD(response.data);
                         setReady(listaTramites[3]);
                     })
@@ -194,8 +205,19 @@ function Gestion({ tramite }) {
                 break;
             case listaTramites[6]:
                 axios
-                    .get(baseURL + `Equipment/GetEquipmentNames`)
+                    .get(
+                        baseURL +
+                            `MachineInventory/GetMachineInventoryInBranch/${sucursal}`
+                    )
                     .then(function (response) {
+                        response.data.map((obj) => {
+                            obj.id = obj.serialNumber;
+                            obj.name =
+                                obj.equipmentName +
+                                " (" +
+                                obj.serialNumber +
+                                ")";
+                        });
                         setInfoBD(response.data);
                         setReady(listaTramites[6]);
                     })
@@ -216,6 +238,37 @@ function Gestion({ tramite }) {
                         }
                         console.log(error.config);
                     });
+
+                break;
+            case listaTramites[7]:
+                axios
+                    .get(baseURL + `Product/GetProducts`)
+                    .then(function (response) {
+                        response.data.map((obj) => {
+                            obj.id = obj.barcode;
+                            obj.name = obj.name;
+                        });
+                        setInfoBD(response.data);
+                        setReady(listaTramites[7]);
+                    })
+                    .catch(function (error) {
+                        if (error.response) {
+                            // GET response with a status code not in range 2xx
+                            console.log(error.response.data);
+                            console.log(error.response.status);
+                            console.log(error.response.headers);
+                        } else if (error.request) {
+                            // no response
+                            console.log(error.request);
+                            // instance of XMLHttpRequest in the browser
+                            // instance ofhttp.ClientRequest in node.js
+                        } else {
+                            // Something wrong in setting up the request
+                            console.log("Error", error.message);
+                        }
+                        console.log(error.config);
+                    });
+
                 break;
         }
     }, [tramite, sucursal]);
@@ -224,7 +277,7 @@ function Gestion({ tramite }) {
         switch (tramite) {
             case listaTramites[0]:
                 if (ready == listaTramites[0]) {
-                    return <AdminViewSucursal objetosBD={infoBD} />;
+                    return <AdminViewSucursal objetosBD={infoBD} sucursal={sucursal} />;
                 }
                 break;
             case listaTramites[1]:
@@ -243,9 +296,7 @@ function Gestion({ tramite }) {
                 break;
             case listaTramites[3]:
                 if (ready == listaTramites[3]) {
-                    return (
-                        <AdminActionBoxC objetosBD={infoBD} tramite={tramite} />
-                    );
+                    return <AdminActionBoxC objetosBD={infoBD} />;
                 }
                 break;
             case listaTramites[4]:
@@ -265,8 +316,16 @@ function Gestion({ tramite }) {
             case listaTramites[6]:
                 if (ready == listaTramites[6]) {
                     return (
-                        <AdminActionBoxD objetosBD={infoBD} tramite={tramite} />
+                        <AdminActionBoxD
+                            objetosBD={infoBD}
+                            sucursal={sucursal}
+                        />
                     );
+                }
+                break;
+            case listaTramites[7]:
+                if (ready == listaTramites[7]) {
+                    return <AdminActionBoxE objetosBD={infoBD} />;
                 }
                 break;
         }

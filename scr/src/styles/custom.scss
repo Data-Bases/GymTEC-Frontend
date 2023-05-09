@@ -151,3 +151,46 @@ img.logo {
     color: $green-900;
     text-shadow: 1px 2px 4px $blue-600;
 }
+
+// Sign Up
+
+.signup{
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background: -moz-linear-gradient(
+        left,
+        $blue-900 0%,
+        $blue-500 25%,
+        $teal-800 100%
+    );
+    background: -webkit-linear-gradient(
+        left,
+        $blue-900 0%,
+        $blue-500 25%,
+        $teal-800 100%
+    );
+    background: linear-gradient(
+        to right,
+        $blue-900 5%,
+        $green-600 40%,
+        $teal-600 100%
+    );
+}
+
+.signup-form{
+    flex-wrap: wrap;
+    height: 80%;
+    width: 80%;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: space-around;
+}
+
+.signup-form input {
+    border-radius: 5px;
+    border: 0;
+    padding: 5px;
+    margin: 0px 10px;
+}

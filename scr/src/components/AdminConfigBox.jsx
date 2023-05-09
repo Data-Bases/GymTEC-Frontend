@@ -63,7 +63,7 @@ function AdminConfigBox({ tramite, sucursal }) {
                 break;
             case listaConfigs[2]:
                 axios
-                    .get(baseURL + `GetProductsInBranch/${sucursal}`)
+                    .get(baseURL + `Product/GetProductsInBranch/${sucursal}`)
                     .then(function (response) {
                         setInBranch(response.data);
                     })
@@ -89,11 +89,10 @@ function AdminConfigBox({ tramite, sucursal }) {
                     });
 
                 axios
-                    .get(baseURL + `GetProductsNotInBranch/${sucursal}`)
+                    .get(baseURL + `Product/GetProductsNotInBranch/${sucursal}`)
                     .then(function (response) {
                         response.data.map((obj) => {
                             obj.id = obj.barcode;
-                            
                         });
                         setOutBranch(response.data);
                     })

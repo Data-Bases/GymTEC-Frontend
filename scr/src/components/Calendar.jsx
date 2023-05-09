@@ -16,7 +16,7 @@ function CalendarTask() {
   );
 }
 
-function Calendar() {
+function Calendar({ objetosBD }) {
   const handleSelect = (eventKey) => {
     console.log(eventKey);
   };
