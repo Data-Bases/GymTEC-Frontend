@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Dropdown } from "react-bootstrap";
 import AdminActionBoxB from "./AdminActionBoxB";
 
-function Planilla() {
-    
+function Planilla({ tramite }) {
+    const [sucursal, setSucursal] = useState("GymASETEC");
+    const [listaSucursales, setSucursales] = useState([]);
     const [infoBD, setInfoBD] = useState([]);
+    const [ready, setReady] = useState("");
     return (
         <div className="d-flex h-100 w-100 gestion">
             <div className="d-flex h-100 flex-column">
@@ -21,22 +23,10 @@ function Planilla() {
                         ))}
                     </Dropdown.Menu>
                 </Dropdown>
-                <Dropdown>
-                    <Dropdown.Toggle variant="success" id="dropdown-basic">
-                        {tramite}
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu>
-                        {listaTramites.map((nombre) => (
-                            <Link key={nombre} href={`/gestion/${nombre}`}>
-                                <Dropdown.Item key={nombre}>
-                                    {nombre}
-                                </Dropdown.Item>
-                            </Link>
-                        ))}
-                    </Dropdown.Menu>
-                </Dropdown>
             </div>
-            <AdminActionBoxB objetosBD={infoBD} tramite={"Planilla"}>
+            <AdminActionBoxB objetosBD={infoBD} tramite={"Planilla"} />
         </div>
     );
 }
+
+export default Planilla;
